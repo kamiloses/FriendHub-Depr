@@ -1,0 +1,21 @@
+.left-sidebar{
+  width: 330px;
+  height: 100vh;
+  border-right: 1px solid #aaaaaa;
+
+}
+ul{
+margin-top:60px;
+  font-size: 25px;
+
+}
+
+a{
+  color: white;
+  text-decoration: none;
+}
+span{
+
+  color: white;
+}
+

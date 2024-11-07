@@ -3,15 +3,25 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  background-color: #fff;
+  background-color: black;
   border-bottom: 1px solid #ccc;
 
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 77%;
   z-index: 1000;
+  margin-left: 339px;
+
 }
+
+.header-center span{
+  margin-right: 300px;
+  color: white;
+}
+
+
+
 
 .header-left,
 .header-center,
@@ -19,6 +29,7 @@ header {
   display: flex;
   align-items: center;
 }
+
 
 .header-left {
   flex: 1;

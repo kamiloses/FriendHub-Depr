@@ -1,6 +1,24 @@
 .container {
-  display: flex; /* Używamy flexboxa do ustawienia elementów w linii */
-  justify-content: space-between; /* Opcjonalnie: rozstawia elementy na całej szerokości */
-  align-items: flex-start; /* Opcjonalnie: wyrównuje elementy do góry */
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+
+ .icon-container {
+   display: flex;
+   align-items: center;
+   margin: 10px 0;
+   font-size: 18px;
+   color: #1DA1F2;
+ }
+
+icon-container i {
+  font-size: 24px;
+  margin-right: 8px;
+}
+
+icon-container:hover {
+  color: #0d8fce;
 }
 

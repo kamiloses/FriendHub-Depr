@@ -1,13 +1,43 @@
 .right-sidebar{
-  background-color: red;
+  background-color: black;
   width: 330px;
   height: 100vh;
+  margin-top: 10px;
+  border-left: 1px solid #ccc;
 }
 ul{
-  margin-top:60px
 
 }
 
-li{
+span{
+  color: white;
+}
 
+
+.suggested-following{
+  border-radius: 20px;
+  padding: 20px 20px 20px 20px;
+  border: 1px solid #ccc;
+   margin-top: 50px;
+
+}
+img{
+  height: 50px;
+  border-radius: 50%;
+
+}
+button {
+  padding: 10px 20px;
+  font-size: 14px;
+  color: black;
+  background-color: #f5f6f7;
+  border: 1px solid #d1d1d1;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+button:hover {
+  background-color: #e2e2e2;
+  color: #333;
 }

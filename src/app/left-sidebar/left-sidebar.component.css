@@ -3,9 +3,11 @@
   height: 100vh;
   border-right: 1px solid #aaaaaa;
 
+
+  position: fixed;
+
 }
 ul{
-margin-top:60px;
   font-size: 25px;
 
 }
@@ -19,3 +21,8 @@ span{
   color: white;
 }
 
+img{
+  height: 50px;
+  width: 50px;
+
+}

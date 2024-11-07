@@ -1,13 +1,62 @@
-.posts-container{
-  background-color: red;
-
+.publish-post{
+  display: inline-block;
+  background-color: black;
+  border-bottom: red solid 1px;
+  width: 100%;
+}
+.publish-post textarea{
+  margin-left: 20px;
+  padding: 8px;
+  width: 500px;
+  background-color: black;
+  display: inline-block;
 
 }
+
+.publish-post button{
+padding: 20px;
+
+}
+.icon {
+  font-size: 20px;
+  color: #1da1f2; /* Twitterowy niebieski */
+  cursor: pointer;
+  margin-right: 10px;
+}
+.fa-smile{
+
+  color: orange;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.post-container{
+  background-color: black;
+  font-family: Arial, sans-serif;
+  border-bottom: yellow solid 1px;
+}
+
 .user-data{
   display: flex;
+}
+p{
+  margin-top: 20px;
+  margin-left: 15px;
 
 }
-
 img{
   margin-top: 15px;
   margin-left: 15px;
@@ -16,13 +65,21 @@ img{
   border-radius: 50px;
 
 }
-
-p{
-  margin-left: 30px;
+.name{
+  font-weight: bold;
+  color: #ffffff;
+}
+.unique-name,.date{
+  color: #8899a6;
+  font-size: 0.9em;
+  margin-left: 10px;
 
 }
-span{
-  margin-top: 50px;
-  display: block;
 
+.post-text {
+  color: white;
+  line-height: 1.5;
+  margin-top: -10px; /* Przesunięcie tekstu w górę */
+  display: inline-block;
 }
+

@@ -14,4 +14,6 @@ import {PostsListComponent} from './posts-list/posts-list.component';
 })
 export class AppComponent {
   title = 'Chatter';
+
+
 }

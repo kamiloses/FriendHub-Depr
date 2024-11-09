@@ -7,11 +7,11 @@
     <p class="date"> 20.04.2024</p>
   </div>
   <div class="post-text">
-   {{post[1].content}}
+   {{postDetails.content}}
     <div class="interactions">
-      <i class="fa fa-comment">2</i>
-      <i class="fa fa-reply">1</i>
-      <i class="fa fa-heart">10</i>
+      <i class="fa fa-comment">{{postDetails.commentsCount}}</i>
+      <i class="fa fa-reply">{{postDetails.retweetCount}}</i>
+      <i class="fa fa-heart">{{postDetails.likeCount}}</i>
 
 
     </div>

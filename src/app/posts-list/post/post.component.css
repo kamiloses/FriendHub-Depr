@@ -38,7 +38,7 @@ img{
 .post-text {
   color: white;
   line-height: 1.5;
-  margin-top: -10px; /* Przesunięcie tekstu w górę */
+  margin-top: -10px;
   display: inline-block;
 }
 

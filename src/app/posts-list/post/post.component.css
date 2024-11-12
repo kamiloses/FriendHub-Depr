@@ -46,3 +46,9 @@ img{
 i{
   margin-left: 155px;
 }
+
+.post-container:hover{
+  cursor: pointer;
+
+}
+

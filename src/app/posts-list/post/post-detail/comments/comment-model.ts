@@ -8,5 +8,5 @@ export interface Comment {
   numberOfComments: number;
   numberOfLikes: number;
   numberOfReplies: number;
-  replies: Comment[];
+
 }

@@ -1,22 +1,119 @@
+@for (comment of getMainComments(); track comment.id) {
+  <div class="comment">
+    <div class="user-data"><img src="user-1.jpg" alt="image not loaded">
+      <p class="name">Jan Nowak</p>
+      <p class="unique-name">&#64;Jan123</p>
+      <p class="date">20.04.2024</p>
+    </div>
 
-@for (comment of comments; track comment.id){
-    <div  class="comment">
-      <div class="user-data"><img src="user-1.jpg" alt="image not loaded">
-        <p class="name">Jan Nowak</p>
-        <p class="unique-name">&#64;Jan123</p>
-        <p  class="date"> 20.04.2024</p>
+    <div class="comment-text">
+      {{ comment.content }} {{ comment.parentCommentId }}
+      <div class="interactions">
+        <i class="fa fa-comment">1</i>
+        <i class="fa fa-reply">0</i>
+        <i class="fa fa-heart">3</i>
       </div>
+    </div>
 
-       <div class="comment-text">
-        {{comment.content}} {{comment.parentCommentId}}
-        <div class="interactions">
-          <i class="fa fa-comment">1</i>
-          <i class="fa fa-reply">0</i>
-          <i class="fa fa-heart">3</i>
+    <div class="replies">
+      @for (reply of comments; track reply.id) {
+        @if (comment.id == reply.parentCommentId) {
+          <div class="reply">
+            {{ reply.content }}
+            @for (subReply of comments; track subReply.id) {
+              @if (subReply.parentCommentId == reply.id) {
+                <div class="sub-reply">
+                  {{ subReply.content }}
+                  @for (nestedReply of comments; track nestedReply.id) {
+                    @if (nestedReply.parentCommentId == subReply.id) {
+                      <div class="nested-reply">
+                        {{ nestedReply.content }}
+                      </div>
+                    }
+                  }
+                </div>
+              }
+            }
+          </div>
+        }
+      }
+    </div>
 
-        </div>
-      </div>
+  </div>
+}
 
 
-    </div>}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--@for (comment of getMainComments(); track comment.id) {-->
+<!--  <div class="comment">-->
+<!--    <div class="user-data"><img src="user-1.jpg" alt="image not loaded">-->
+<!--      <p class="name">Jan Nowak</p>-->
+<!--      <p class="unique-name">&#64;Jan123</p>-->
+<!--      <p class="date">20.04.2024</p>-->
+<!--    </div>-->
+
+<!--    <div class="comment-text">-->
+<!--      {{ comment.content }} {{ comment.parentCommentId }}-->
+<!--      <div class="interactions">-->
+<!--        <i class="fa fa-comment">1</i>-->
+<!--        <i class="fa fa-reply">0</i>-->
+<!--        <i class="fa fa-heart">3</i>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Rekurencyjne zagnieżdżenie odpowiedzi &ndash;&gt;-->
+<!--    <div class="replies">-->
+<!--      @for (reply of comments; track reply.id) {-->
+<!--        @if (comment.id == reply.parentCommentId) {-->
+<!--          <div class="reply">-->
+<!--            {{ reply.content }}-->
+<!--            &lt;!&ndash; Rekurencyjnie wyświetlamy odpowiedzi na odpowiedzi &ndash;&gt;-->
+<!--            @for (subReply of comments; track subReply.id) {-->
+<!--              @if (subReply.parentCommentId == reply.id) {-->
+<!--                <div class="sub-reply">-->
+<!--                  {{ subReply.content }}-->
+<!--                  &lt;!&ndash; Kolejna rekurencja w razie potrzeby &ndash;&gt;-->
+<!--                  @for (nestedReply of comments; track nestedReply.id) {-->
+<!--                    @if (nestedReply.parentCommentId == subReply.id) {-->
+<!--                      <div class="nested-reply">-->
+<!--                        {{ nestedReply.content }}-->
+<!--                      </div>-->
+<!--                    }-->
+<!--                  }-->
+<!--                </div>-->
+<!--              }-->
+<!--            }-->
+<!--          </div>-->
+<!--        }-->
+<!--      }-->
+<!--    </div>-->
+
+<!--  </div>-->
+<!--}-->

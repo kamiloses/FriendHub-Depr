@@ -2,12 +2,12 @@
 
 <div [routerLink]="['/post', '12345']" class="post-container">
   <div class="user-data"><img src="user-1.jpg" alt="image not loaded">
-  <p class="name">Jan Nowak</p>
+    <p class="name">Jan Nowak</p>
     <p class="unique-name">&#64;Jan123</p>
     <p class="date"> 20.04.2024</p>
   </div>
   <div class="post-text">
-   {{postDetails.content}}
+    {{postDetails.content}}
     <div class="interactions">
       <i class="fa fa-comment">{{postDetails.commentsCount}}</i>
       <i class="fa fa-reply">{{postDetails.retweetCount}}</i>

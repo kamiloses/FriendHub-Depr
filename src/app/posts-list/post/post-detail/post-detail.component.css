@@ -1,53 +1,107 @@
-
-
-
-
-.post-container{
-  background-color: black;
-  font-family: Arial, sans-serif;
-  border-bottom: yellow solid 1px;
-  height: 200px;
-  margin-left: 400px;
-  margin-top: 50px;
+.post-container {
+  max-width: 600px;
+  padding: 10px;
+  background-color: white;
+  border: 1px solid #e1e8ed;
+  border-radius: 10px;
+  margin-top: 60px;
+  margin-left: 350px;
 }
 
-.user-data{
+.user-data {
   display: flex;
+  align-items: center;
 }
-p{
-  margin-top: 20px;
-  margin-left: 15px;
 
+.user-data img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
 }
-img{
-  margin-top: 15px;
-  margin-left: 15px;
-  height: 50px;
-  width: 50px;
-  border-radius: 50px;
 
-}
-.name{
-  font-weight: bold;
-  color: #ffffff;
-}
-.unique-name,.date{
-  color: #8899a6;
-  font-size: 0.9em;
-  margin-left: 10px;
-
+.name, .unique-name, .date {
+  margin: 0;
+  padding: 0;
 }
 
 .post-text {
+  margin-top: 10px;
+}
+
+.interactions i {
+  margin-right: 10px;
+}
+
+.publish-comment {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+.publish-comment img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+#comment-input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #e1e8ed;
+  border-radius: 20px;
+  margin-right: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #1da1f2;
   color: white;
-  line-height: 1.5;
-  margin-top: -10px;
-  display: inline-block;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0a85d0;
 }
 
 
-i{
-  margin-left: 155px;
+
+
+
+
+
+
+
+
+
+.comments-section {
+  margin-top: 20px;
 }
 
+.comment {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #e1e8ed;
+  border-radius: 10px;
+}
 
+.comment .user-data {
+  display: flex;
+  align-items: center;
+}
+
+.comment .post-text {
+  margin-top: 10px;
+}
+
+.comment .interactions i {
+  margin-right: 10px;
+}
+
+.comment .nested {
+  margin-left: 40px; /* Wcięcie dla zagnieżdżonych komentarzy */
+}

@@ -1,5 +1,5 @@
 <div class="posts-container">
-
+  @if (currentRoute==="/"){
   <div class="publish-post">
     <img src="user-1.jpg" alt="image not loaded">
     <textarea placeholder="Co się dzieję ?!"></textarea>
@@ -7,7 +7,7 @@
     <i class="fas fa-smile"></i>
     <button>Opublikuj</button>
   </div>
-
+  }
   @for (post of posts; track post .id) {
     <app-post [postDetails]="post"></app-post>
   }

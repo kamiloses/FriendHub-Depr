@@ -29,5 +29,19 @@
 }
 
 .comment .nested {
-  margin-left: 40px; /* Wcięcie dla zagnieżdżonych komentarzy */
+  margin-left: 40px;
+}
+
+.replies{
+  min-height: 10px;
+  max-height: 20px;
+  display: none;
+
+}
+
+.sub-reply{
+  display: none;
+
+
+
 }

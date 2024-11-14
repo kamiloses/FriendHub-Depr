@@ -35,7 +35,6 @@ export class PostDetailComponent implements OnInit,OnDestroy {
 
     this.currentRoute = this.router.url.substring(this.router.url.lastIndexOf("/") + 1);
     console.log("router :"+this.currentRoute)
-    console.log("hey"+this.router.url.substring(this.router.url.lastIndexOf("/") + 1))
   }
 
 

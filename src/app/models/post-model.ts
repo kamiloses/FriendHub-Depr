@@ -2,7 +2,7 @@ import {User} from './user-model';
 
 export interface Post {
   id: string;
-  user:User
+  user:User;
   content: string;
   createdAt: string;
   likeCount: number;

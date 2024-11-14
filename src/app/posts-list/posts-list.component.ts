@@ -4,12 +4,14 @@ import {Post} from '../models/post-model';
 import {Subscription} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute, Router} from '@angular/router';
+import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-posts-list',
   standalone: true,
   imports: [
-    PostComponent
+    PostComponent,
+    FormsModule
   ],
   templateUrl: './posts-list.component.html',
   styleUrl: './posts-list.component.css'
@@ -29,6 +31,7 @@ export class PostsListComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
+    console.log("wynik: "+this.currentRoute)
     this.updateHeader();
     this.subscription = this.httpClient.get<Post[]>("http://localhost:8080/api/posts").subscribe({
       next: (data) => {
@@ -36,7 +39,7 @@ export class PostsListComponent implements OnInit, OnDestroy {
         this.posts = data;
       },
       error: (error) => {
-        console.error('Błąd podczas pobierania danych:', error);
+        console.error('Error while downloading data:', error);
       }
     });
   }
@@ -45,9 +48,39 @@ export class PostsListComponent implements OnInit, OnDestroy {
 
     if (this.subscription) {
       this.subscription.unsubscribe();
-      console.log('Subskrypcja została anulowana.');
     }
   }
+
+//creating post
+  newPostContent: string = '';
+
+  onPublish() {
+    if (!this.newPostContent.trim()) {
+      alert("Post content cannot be empty");
+      return;
+    }
+
+    const newPost = { content: this.newPostContent };
+    this.httpClient.post('http://localhost:8080/api/posts', newPost).subscribe({
+      next: (response) => {
+        console.log('Post added successfully:', response);
+        this.newPostContent = '';
+      },
+      error: (error) => {
+        console.error('Error adding post:', error);
+      },
+      complete: () => {
+        console.log('Post submission complete.');
+      }
+    });
+  }
+
+
+
+
+
+
+
 
 
   currentRoute!: string;

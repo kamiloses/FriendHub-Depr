@@ -7,7 +7,7 @@ import {UserProfileComponent} from './user/user-profile/user-profile.component';
 export const routes: Routes = [
 
   { path: '', component: PostsListComponent },
-  { path: 'post/:id', component: PostDetailComponent },
+  { path: 'user/:username/post/:id', component: PostDetailComponent },
   {path: 'user/:name', component: UserProfileComponent  },
 
 ]

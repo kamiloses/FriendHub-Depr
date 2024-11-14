@@ -1,47 +1,95 @@
+.comment {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  padding: 15px;
+  border: 1px solid #e1e8ed;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+}
 
-.user-data img {
+.comment .user-data {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.comment .user-data img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   margin-right: 10px;
 }
 
-.comment {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 10px;
-  padding: 10px;
-  border: 1px solid #e1e8ed;
-  border-radius: 10px;
+.comment .user-data .name {
+  font-weight: bold;
+  margin-bottom: 0;
 }
 
-.comment .user-data {
-  display: flex;
-  align-items: center;
+.comment .user-data .unique-name {
+  color: #888;
+  font-size: 0.9em;
+  margin-bottom: 5px;
+}
+
+.comment .user-data .date {
+  color: #888;
+  font-size: 0.8em;
 }
 
 .comment .comment-text {
   margin-top: 10px;
+  font-size: 1em;
+  color: #333;
 }
 
-.comment .interactions i {
-  margin-right: 10px;
+.comment .comment-text .interactions {
+  margin-top: 10px;
 }
 
-.comment .nested {
-  margin-left: 40px;
+.comment .comment-text .interactions i {
+  margin-right: 15px;
+  cursor: pointer;
 }
 
-.replies{
-  min-height: 10px;
-  max-height: 20px;
-  display: none;
-
+.replies {
+  margin-top: 15px;
+  padding-left: 20px;
 }
 
-.sub-reply{
-  display: none;
+.reply, .sub-reply, .nested-reply {
+  margin-top: 10px;
+  padding-left: 20px;
+}
 
+details {
+  cursor: pointer;
+  background-color: #f1f1f1;
+  padding: 5px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
 
+details[open] summary {
+  font-weight: bold;
+}
 
+summary {
+  font-size: 1em;
+  color: #007bff;
+  cursor: pointer;
+}
+
+summary:hover {
+  color: #0056b3;
+}
+
+details p {
+  margin-top: 5px;
+  font-size: 1em;
+  color: #555;
+}
+
+.comment .comment-text .interactions i:hover {
+  color: #007bff;
 }

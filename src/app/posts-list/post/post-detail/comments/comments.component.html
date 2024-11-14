@@ -1,13 +1,14 @@
 @for (comment of getMainComments(); track comment.id) {
   <div class="comment">
-    <div class="user-data"><img src="user-1.jpg" alt="image not loaded">
+    <div class="user-data">
+      <img src="user-1.jpg" alt="image not loaded">
       <p class="name">Jan Nowak</p>
       <p class="unique-name">&#64;Jan123</p>
       <p class="date">20.04.2024</p>
     </div>
 
     <div class="comment-text">
-      {{ comment.content }} {{ comment.parentCommentId }}
+      <p>{{ comment.content }}</p>
       <div class="interactions">
         <i class="fa fa-comment">1</i>
         <i class="fa fa-reply">0</i>
@@ -19,15 +20,26 @@
       @for (reply of comments; track reply.id) {
         @if (comment.id == reply.parentCommentId) {
           <div class="reply">
-            {{ reply.content }}
+            <details>
+              <summary>See more</summary>
+              <p>{{ reply.content }}</p>
+            </details>
+
             @for (subReply of comments; track subReply.id) {
               @if (subReply.parentCommentId == reply.id) {
                 <div class="sub-reply">
-                  {{ subReply.content }}
+                  <details>
+                    <summary>See more</summary>
+                    <p>{{ subReply.content }}</p>
+                  </details>
+
                   @for (nestedReply of comments; track nestedReply.id) {
                     @if (nestedReply.parentCommentId == subReply.id) {
                       <div class="nested-reply">
-                        {{ nestedReply.content }}
+                        <details>
+                          <summary>See more</summary>
+                          <p>{{ nestedReply.content }}</p>
+                        </details>
                       </div>
                     }
                   }
@@ -38,7 +50,6 @@
         }
       }
     </div>
-
   </div>
 }
 

@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {FormsModule} from '@angular/forms';
-import {RouterLink, RouterOutlet} from '@angular/router';
+import {ActivatedRoute, Router, RouterLink, RouterOutlet} from '@angular/router';
+import {Post} from '../models/post-model';
+import {Subscription} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -13,15 +16,39 @@ import {RouterLink, RouterOutlet} from '@angular/router';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent {
+export class LoginComponent implements OnDestroy{
 
 
-  username: string = '';
-  password: string = '';
+
+  constructor(private httpClient: HttpClient) {}
+
+  private subscription: Subscription | null = null;
+
+  protected username!: string;
+  protected password!: string;
 
   onSubmit() {
-    // Implement your login logic here
-    console.log('Username:', this.username);
-    console.log('Password:', this.password);
+    const loginData = { username: this.username, password: this.password };
+
+    this.subscription = this.httpClient.post<boolean>("http://localhost:7070/api/user/login", null, {
+      params: loginData
+    }).subscribe({
+      next: (isValid: boolean) => {
+        if (isValid) {
+          console.log("login successful!");
+        } else {
+          console.error("credentials invalid!");
+        }
+      },
+      error: (error) => {
+        console.error('error while trying to log in', error);
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 }

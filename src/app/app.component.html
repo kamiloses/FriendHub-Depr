@@ -1,11 +1,12 @@
-<app-header class="header"></app-header>
+
+<app-header [ngClass]="{'hide': currentRoute === '/login'||'/register'}" class="header"></app-header>
 
 
 <div class="container">
-  <app-left-sidebar></app-left-sidebar>
-<!--  <app-posts-list></app-posts-list>-->
-  <router-outlet></router-outlet>
-  <app-right-sidebar></app-right-sidebar>
+
+  <app-left-sidebar [ngClass]="{'hide': currentRoute === '/login'||'/register'}" class="left-sidebar"></app-left-sidebar>
+  <router-outlet ></router-outlet>
+  <app-right-sidebar [ngClass]="{'hide': currentRoute === '/login'||'/register'}" class="right-sidebar"></app-right-sidebar>
 
 
 </div>

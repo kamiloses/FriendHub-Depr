@@ -1,8 +1,6 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import { Comment } from '../../../../models/comment-model';
 import {HttpClient} from '@angular/common/http';
-import {ActivatedRoute, Router} from '@angular/router';
-import {Post} from '../../../../models/post-model';
 import {Subscription} from 'rxjs';
 
 @Component({
@@ -48,7 +46,7 @@ export class CommentsComponent implements OnInit , OnDestroy {
 
   ngOnInit(): void {
 
-    this.subscription = this.httpClient.get<Comment[]>("http://localhost:8083/api/comments/"+this.currentRoute).subscribe({
+    this.subscription = this.httpClient.get<Comment[]>("http://localhost:7070/api/comments/2").subscribe({
       next: (data) => {
         console.log("comment.ts:"+data);
         this.comments = data;

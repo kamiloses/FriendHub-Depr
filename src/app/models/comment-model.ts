@@ -1,8 +1,10 @@
+import {User} from './user-model';
+
 export interface Comment {
   id: string;
   content: string;
   createdAt: Date;
-  userId: string;
+  userDetails: User;
   postId: string;
   parentCommentId: string | null;
   numberOfComments: number;

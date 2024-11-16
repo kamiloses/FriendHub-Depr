@@ -3,8 +3,8 @@
   <div class="comment">
     <div class="user-data">
       <img src="user-1.jpg" alt="image not loaded">
-      <p class="name">Jan Nowak</p>
-      <p class="unique-name">&#64;Jan123</p>
+      <p class="name">{{comment.userDetails.firstName}} {{comment.userDetails.lastName}}</p>
+      <p class="unique-name">&#64;{{comment.userDetails.username}}</p>
       <p class="date">20.04.2024</p>
     </div>
 
@@ -23,7 +23,14 @@
           <div class="reply">
             <details>
               <summary>See more</summary>
+              <p class="name">{{reply.userDetails.firstName}} {{reply.userDetails.lastName}}</p>
+              <p class="unique-name">&#64;{{reply.userDetails.username}}</p>
+              <p class="date">20.04.2024</p>
               <p>{{ reply.content }}</p>
+              <form (ngSubmit)="sendComment(commentId)">
+                <input type="text" [(ngModel)]="content" name="content">
+                <button type="submit">Publish</button>
+              </form>
             </details>
 
             @for (subReply of comments; track subReply.id) {
@@ -31,7 +38,15 @@
                 <div class="sub-reply">
                   <details>
                     <summary>See more</summary>
+                    <p class="name">{{subReply.userDetails.firstName}} {{subReply.userDetails.lastName}}</p>
+                    <p class="unique-name">&#64;{{subReply.userDetails.username}}</p>
+                    <p class="date">20.04.2024</p>
                     <p>{{ subReply.content }}</p>
+                    <form (ngSubmit)="sendComment(commentId)">
+                      <input type="text" [(ngModel)]="content" name="content">
+                      <button type="submit">Publish</button>
+                    </form>
+
                   </details>
 
                   @for (nestedReply of comments; track nestedReply.id) {
@@ -39,7 +54,14 @@
                       <div class="nested-reply">
                         <details>
                           <summary>See more</summary>
+                          <p class="name">{{nestedReply.userDetails.firstName}} {{nestedReply.userDetails.lastName}}</p>
+                          <p class="unique-name">&#64;{{nestedReply.userDetails.username}}</p>
+                          <p class="date">20.04.2024</p>
                           <p>{{ nestedReply.content }}</p>
+                          <form (ngSubmit)="sendComment(commentId)">
+                            <input type="text" [(ngModel)]="content" name="content">
+                            <button type="submit">Publish</button>
+                          </form>
                         </details>
                       </div>
                     }
@@ -53,79 +75,3 @@
     </div>
   </div>
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--@for (comment of getMainComments(); track comment.id) {-->
-<!--  <div class="comment">-->
-<!--    <div class="user-data"><img src="user-1.jpg" alt="image not loaded">-->
-<!--      <p class="name">Jan Nowak</p>-->
-<!--      <p class="unique-name">&#64;Jan123</p>-->
-<!--      <p class="date">20.04.2024</p>-->
-<!--    </div>-->
-
-<!--    <div class="comment-text">-->
-<!--      {{ comment.content }} {{ comment.parentCommentId }}-->
-<!--      <div class="interactions">-->
-<!--        <i class="fa fa-comment">1</i>-->
-<!--        <i class="fa fa-reply">0</i>-->
-<!--        <i class="fa fa-heart">3</i>-->
-<!--      </div>-->
-<!--    </div>-->
-
-<!--    &lt;!&ndash; Rekurencyjne zagnieżdżenie odpowiedzi &ndash;&gt;-->
-<!--    <div class="replies">-->
-<!--      @for (reply of comments; track reply.id) {-->
-<!--        @if (comment.id == reply.parentCommentId) {-->
-<!--          <div class="reply">-->
-<!--            {{ reply.content }}-->
-<!--            &lt;!&ndash; Rekurencyjnie wyświetlamy odpowiedzi na odpowiedzi &ndash;&gt;-->
-<!--            @for (subReply of comments; track subReply.id) {-->
-<!--              @if (subReply.parentCommentId == reply.id) {-->
-<!--                <div class="sub-reply">-->
-<!--                  {{ subReply.content }}-->
-<!--                  &lt;!&ndash; Kolejna rekurencja w razie potrzeby &ndash;&gt;-->
-<!--                  @for (nestedReply of comments; track nestedReply.id) {-->
-<!--                    @if (nestedReply.parentCommentId == subReply.id) {-->
-<!--                      <div class="nested-reply">-->
-<!--                        {{ nestedReply.content }}-->
-<!--                      </div>-->
-<!--                    }-->
-<!--                  }-->
-<!--                </div>-->
-<!--              }-->
-<!--            }-->
-<!--          </div>-->
-<!--        }-->
-<!--      }-->
-<!--    </div>-->
-
-<!--  </div>-->
-<!--}-->

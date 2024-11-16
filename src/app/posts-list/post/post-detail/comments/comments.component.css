@@ -21,75 +21,69 @@
   margin-right: 10px;
 }
 
-.comment .user-data .name {
-  font-weight: bold;
-  margin-bottom: 0;
-}
-
-.comment .user-data .unique-name {
-  color: #888;
-  font-size: 0.9em;
-  margin-bottom: 5px;
-}
-
-.comment .user-data .date {
-  color: #888;
-  font-size: 0.8em;
-}
-
-.comment .comment-text {
-  margin-top: 10px;
-  font-size: 1em;
-  color: #333;
-}
-
-.comment .comment-text .interactions {
-  margin-top: 10px;
-}
-
-.comment .comment-text .interactions i {
-  margin-right: 15px;
-  cursor: pointer;
-}
-
 .replies {
   margin-top: 15px;
   padding-left: 20px;
+  border-left: 2px solid #e1e8ed;
 }
 
 .reply, .sub-reply, .nested-reply {
   margin-top: 10px;
-  padding-left: 20px;
+  padding: 10px;
+  border: 1px solid #e1e8ed;
+  border-radius: 10px;
+  background-color: #f9f9f9;
 }
 
-details {
-  cursor: pointer;
-  background-color: #f1f1f1;
-  padding: 5px;
-  border-radius: 5px;
-  margin-bottom: 5px;
+.reply p, .sub-reply p, .nested-reply p {
+  margin: 5px 0;
+  font-size: 0.95em;
+  color: #333;
 }
 
-details[open] summary {
+.reply .name, .sub-reply .name, .nested-reply .name {
   font-weight: bold;
 }
 
-summary {
+.reply .unique-name, .sub-reply .unique-name, .nested-reply .unique-name {
+  color: #888;
+  font-size: 0.9em;
+}
+
+.reply .date, .sub-reply .date, .nested-reply .date {
+  color: #888;
+  font-size: 0.8em;
+}
+
+details {
+  background-color: #f1f1f1;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+details summary {
   font-size: 1em;
   color: #007bff;
+  font-weight: bold;
   cursor: pointer;
 }
 
-summary:hover {
+details summary:hover {
   color: #0056b3;
 }
 
 details p {
-  margin-top: 5px;
-  font-size: 1em;
+  font-size: 0.95em;
   color: #555;
+  margin-top: 5px;
 }
 
-.comment .comment-text .interactions i:hover {
-  color: #007bff;
-}
+
+
+
+
+
+
+
+

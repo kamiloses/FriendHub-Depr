@@ -27,8 +27,8 @@
               <p class="unique-name">&#64;{{reply.userDetails.username}}</p>
               <p class="date">20.04.2024</p>
               <p>{{ reply.content }}</p>
-              <form (ngSubmit)="sendComment(commentId)">
-                <input type="text" [(ngModel)]="content" name="content">
+              <form (ngSubmit)="sendComment(reply)">
+                <input type="text" [(ngModel)]="replyInput" name="content">
                 <button type="submit">Publish</button>
               </form>
             </details>
@@ -42,8 +42,8 @@
                     <p class="unique-name">&#64;{{subReply.userDetails.username}}</p>
                     <p class="date">20.04.2024</p>
                     <p>{{ subReply.content }}</p>
-                    <form (ngSubmit)="sendComment(commentId)">
-                      <input type="text" [(ngModel)]="content" name="content">
+                    <form (ngSubmit)="sendComment(subReply)">
+                      <input type="text" [(ngModel)]="subReplyInput" name="content">
                       <button type="submit">Publish</button>
                     </form>
 
@@ -58,8 +58,8 @@
                           <p class="unique-name">&#64;{{nestedReply.userDetails.username}}</p>
                           <p class="date">20.04.2024</p>
                           <p>{{ nestedReply.content }}</p>
-                          <form (ngSubmit)="sendComment(commentId)">
-                            <input type="text" [(ngModel)]="content" name="content">
+                          <form (ngSubmit)="sendComment(nestedReply)">
+                            <input type="text" [(ngModel)]="nestedReplyInput" name="content">
                             <button type="submit">Publish</button>
                           </form>
                         </details>

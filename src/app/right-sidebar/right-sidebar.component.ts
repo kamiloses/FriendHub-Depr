@@ -2,13 +2,17 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { User } from '../models/user-model';
+import {NgIf, NgStyle} from '@angular/common';
 
 @Component({
   selector: 'app-right-sidebar',
   standalone: true,
-  imports: [],
+  imports: [
+    NgStyle,
+    NgIf
+  ],
   templateUrl: './right-sidebar.component.html',
-  styleUrls: ['./right-sidebar.component.css'], // Poprawiona nazwa
+  styleUrls: ['./right-sidebar.component.css'],
 })
 export class RightSidebarComponent implements OnInit, OnDestroy {
   private subscription: Subscription | null = null;
@@ -16,8 +20,8 @@ export class RightSidebarComponent implements OnInit, OnDestroy {
 
   constructor(private httpClient: HttpClient) {}
 
-  isChatOpen = false; // Kontroluje widoczność okienka czatu
-
+  isChatOpen = false;
+  chatPosition: { top: number; left: number } | null = null;
   ngOnInit(): void {
     this.subscription = this.httpClient
       .get<User[]>('http://localhost:8084/api/friends?username=marcin')
@@ -38,12 +42,18 @@ export class RightSidebarComponent implements OnInit, OnDestroy {
     }
   }
 
-  // Metody otwierania i zamykania czatu
   openChat(): void {
+
+
+    this.chatPosition = {
+      top: 420,
+      left:1250 ,
+    };
     this.isChatOpen = true;
   }
 
   closeChat(): void {
     this.isChatOpen = false;
+    this.chatPosition = null;
   }
 }

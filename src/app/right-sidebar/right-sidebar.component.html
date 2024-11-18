@@ -1,28 +1,28 @@
 <div class="right-sidebar">
-  <div class="suggested-following">
-    <span>Warci obserwowania</span>
-    <div class="firstUser">
-      <img src="user-1.jpg" alt="not loaded">
-      <span>Adam Wabnic</span>
-      <button>Add</button>
-    </div>
-    <img src="user-2.jpg" alt="not loaded">
-    <span>Jan Nowak</span>
-    <button>Add</button>
-
-  <div>
-    <img src="user-3.jpg" alt="not loaded">
-    <span>Maciej Kowalski</span>
-    <button>Add</button>
+  <div class="friendsList">
+    @for (friend of friendDetails; track friend.id) {
+      <div
+        class="friend-container"
+        (click)="openChat()"
+      >
+        <div class="friend-avatar">
+          <img src="https://via.placeholder.com/50" alt="Avatar">
+          <span class="status-icon"></span>
+        </div>
+        <div class="friend-info">
+          <span class="friend-name">{{friend.firstName}} {{friend.lastName}}</span>
+          <span class="friend-status">Online</span>
+        </div>
+      </div>}
   </div>
+</div>
+
+<div  class="friend-chat-window">
+  <div class="chat-header">
+    <span class="chat-name">Czat</span>
+    <button class="close-chat" (click)="closeChat()">X</button>
   </div>
-  <div>
-    <span>
-      Najpopularniejsze w Polska</span>
-
-
-
+  <div class="chat-content">
 
   </div>
-
 </div>

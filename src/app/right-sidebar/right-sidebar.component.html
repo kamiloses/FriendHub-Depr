@@ -3,8 +3,7 @@
     @for (friend of friendDetails; track friend.id) {
       <div
         class="friend-container"
-        (click)="openChat()"
-      >
+        (click)="openChat(friend)">
         <div class="friend-avatar">
           <img src="https://via.placeholder.com/50" alt="Avatar">
           <span class="status-icon"></span>
@@ -16,16 +15,17 @@
       </div>}
   </div>
 </div>
+
 @if (isChatOpen){
-<div
-  class="friend-chat-window"
-  [ngStyle]="{'top.px': chatPosition?.top, 'left.px': chatPosition?.left}"
->
-  <div class="chat-header">
-    <span class="chat-name">Czat</span>
-    <button class="close-chat" (click)="closeChat()">X</button>
+  <div
+    class="friend-chat-window"
+    [ngStyle]="{'top.px': chatPosition?.top, 'left.px': chatPosition?.left}"
+  >
+    <div class="chat-header">
+      <span class="chat-name">{{friend.username}}</span>
+      <button class="close-chat" (click)="closeChat()">X</button>
+    </div>
+    <div class="chat-content">
+    </div>
   </div>
-  <div class="chat-content">
-  </div>
-</div>
 }

@@ -41,10 +41,10 @@ export class RightSidebarComponent implements OnInit, OnDestroy {
       this.subscription.unsubscribe();
     }
   }
+   friend!:User;
+  openChat(friendDetails:User): void {
 
-  openChat(): void {
-
-
+this.friend=friendDetails
     this.chatPosition = {
       top: 420,
       left:1250 ,

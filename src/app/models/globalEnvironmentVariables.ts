@@ -8,7 +8,7 @@ export class GlobalEnvironmentVariables {
 
   private globalSessionSubject = new BehaviorSubject<boolean>(false);
   private globalUsernameSubject = new BehaviorSubject<string | null>(null);
-  private globalPasswordSubject = new BehaviorSubject<string | null>(null);
+  private globalTokenSubject = new BehaviorSubject<string | null>(null);
 
   constructor() {
     this.initializeState();
@@ -16,12 +16,12 @@ export class GlobalEnvironmentVariables {
 
   private initializeState() {
     const storedSession = sessionStorage.getItem('globalSession') === 'true';
-    const storedUsername = localStorage.getItem('username');
-    const storedPassword = localStorage.getItem('password');
+    const storedUsername = sessionStorage.getItem('username');
+    const storedToken = localStorage.getItem('token');
 
     this.globalSessionSubject.next(storedSession);
     this.globalUsernameSubject.next(storedUsername);
-    this.globalPasswordSubject.next(storedPassword);
+    this.globalTokenSubject.next(storedToken);
   }
 
   getGlobalSession$() {
@@ -40,22 +40,22 @@ export class GlobalEnvironmentVariables {
   setGlobalUsername(value: string | null) {
     this.globalUsernameSubject.next(value);
     if (value) {
-      localStorage.setItem('username', value);
+      sessionStorage.setItem('username', value);
     } else {
-      localStorage.removeItem('username');
+      sessionStorage.removeItem('username');
     }
   }
 
-  getGlobalPassword$() {
-    return this.globalPasswordSubject.asObservable();
+  getGlobalToken$() {
+    return this.globalTokenSubject.asObservable();
   }
 
-  setGlobalPassword(value: string | null) {
-    this.globalPasswordSubject.next(value);
+  setGlobalToken(value: string | null) {
+    this.globalTokenSubject.next(value);
     if (value) {
-      localStorage.setItem('password', value);
+      localStorage.setItem('token', value);
     } else {
-      localStorage.removeItem('password');
+      localStorage.removeItem('token');
     }
   }
 }

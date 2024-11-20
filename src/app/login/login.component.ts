@@ -34,15 +34,16 @@ export class LoginComponent implements OnDestroy{
     this.subscription = this.httpClient.post<boolean>("http://localhost:8081/api/user/login", null, {
       params: loginData
     }).subscribe({
-      next: (isValid: boolean) => { 
+      next: (isValid: boolean) => {
         if (isValid) {
           sessionStorage.setItem('globalSession', 'true');
           sessionStorage.setItem('username', this.username);
           sessionStorage.setItem('password', this.password);
-
+          this.globalEnvironmentVariables.setGlobalUsername(this.username);
           console.log("login successful!");
           this.router.navigate(['']);
           this.globalEnvironmentVariables.setGlobalSession(true)
+
         } else {
           console.error("credentials invalid!");
         }

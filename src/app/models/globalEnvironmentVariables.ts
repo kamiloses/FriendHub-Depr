@@ -50,6 +50,10 @@ export class GlobalEnvironmentVariables {
     return this.globalTokenSubject.asObservable();
   }
 
+  getGlobalTokenValue() {
+    return this.globalTokenSubject.getValue();
+  }
+
   setGlobalToken(value: string | null) {
     this.globalTokenSubject.next(value);
     if (value) {

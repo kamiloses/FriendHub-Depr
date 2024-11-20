@@ -1,55 +1,52 @@
 import {Component, OnDestroy} from '@angular/core';
-import {FormsModule} from '@angular/forms';
-import { Router, RouterLink, RouterOutlet} from '@angular/router';
-import {Subscription} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
+import {Router, RouterLink} from '@angular/router';
 import {GlobalEnvironmentVariables} from '../models/globalEnvironmentVariables';
+import {Subscription} from 'rxjs';
+import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
+  templateUrl: './login.component.html',
   standalone: true,
   imports: [
-    FormsModule,
-    RouterOutlet,
-    RouterLink
+    RouterLink,
+    FormsModule
   ],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnDestroy{
+export class LoginComponent implements OnDestroy {
 
-
-
-  constructor(private httpClient: HttpClient, private router:Router,private globalEnvironmentVariables: GlobalEnvironmentVariables) { }
+  constructor(
+    private httpClient: HttpClient,
+    private router: Router,
+    private globalEnvironmentVariables: GlobalEnvironmentVariables
+  ) {
+  }
 
   private subscription: Subscription | null = null;
-
   protected username!: string;
   protected password!: string;
 
   onSubmit() {
-    const loginData = { username: this.username, password: this.password };
+    const loginData = {username: this.username, password: this.password};
 
-
-    this.subscription = this.httpClient.post<boolean>("http://localhost:8081/api/user/login", null, {
-      params: loginData
-    }).subscribe({
-      next: (isValid: boolean) => {
-        if (isValid) {
-          sessionStorage.setItem('globalSession', 'true');
-          sessionStorage.setItem('username', this.username);
-          sessionStorage.setItem('password', this.password);
+    this.subscription = this.httpClient.post<any>("http://localhost:7070/api/login", loginData).subscribe({
+      next: (response: any) => {
+        if (response.token) {
+          this.globalEnvironmentVariables.setGlobalToken(response.token);
           this.globalEnvironmentVariables.setGlobalUsername(this.username);
-          console.log("login successful!");
-          this.router.navigate(['']);
-          this.globalEnvironmentVariables.setGlobalSession(true)
 
+          this.globalEnvironmentVariables.setGlobalSession(true);
+
+          console.log("Login successful!");
+          this.router.navigate(['']);
         } else {
-          console.error("credentials invalid!");
+          console.error("Credentials invalid!");
         }
       },
       error: (error) => {
-        console.error('error while trying to log in', error);
+        console.error('Error while trying to log in', error);
       }
     });
   }
@@ -61,15 +58,14 @@ export class LoginComponent implements OnDestroy{
   }
 
   logout(): void {
-    localStorage.removeItem("token");
+    this.globalEnvironmentVariables.setGlobalToken(null);
+    this.globalEnvironmentVariables.setGlobalUsername(null);
+    this.globalEnvironmentVariables.setGlobalSession(false);
+    console.log('Logged out successfully.');
   }
+
   isUserLoggedIn(): boolean {
-    if (localStorage.getItem("token") != null) {
-      return true;
-    }
-    return false;
+    const token = this.globalEnvironmentVariables.getGlobalTokenValue();
+    return token !== null;
   }
-
-
-
 }

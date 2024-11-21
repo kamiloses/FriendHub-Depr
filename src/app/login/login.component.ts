@@ -29,12 +29,15 @@ export class LoginComponent implements OnDestroy {
   protected password!: string;
 
   onSubmit() {
+      localStorage.setItem('username', this.username);
+
     const loginData = {username: this.username, password: this.password};
 
     this.subscription = this.httpClient.post<any>("http://localhost:7070/api/login", loginData).subscribe({
       next: (response: any) => {
         if (response.token) {
           this.globalEnvironmentVariables.setGlobalToken(response.token);
+
           this.globalEnvironmentVariables.setGlobalUsername(this.username);
 
           this.globalEnvironmentVariables.setGlobalSession(true);

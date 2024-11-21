@@ -34,7 +34,7 @@ export class PostsListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // Pobranie username z localStorage
+
     const storedUsername = localStorage.getItem('username');
     if (storedUsername) {
       this.globalEnvironment.setGlobalUsername(storedUsername);

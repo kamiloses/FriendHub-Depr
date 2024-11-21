@@ -23,8 +23,10 @@ export class RightSidebarComponent implements OnInit, OnDestroy {
   isChatOpen = false;
   chatPosition: { top: number; left: number } | null = null;
   ngOnInit(): void {
+    const storedUsername = localStorage.getItem('username');
+    console.log("istnieje ?"+storedUsername);
     this.subscription = this.httpClient
-      .get<User[]>('http://localhost:8084/api/friends?username=marcin')
+      .get<User[]>('http://localhost:8084/api/friends?username='+storedUsername)
       .subscribe({
         next: (data) => {
           console.log(data);

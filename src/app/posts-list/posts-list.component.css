@@ -1,7 +1,7 @@
 
 .publish-post{
   display: inline-block;
-  background-color: black;
+  background-color: whitesmoke;
   border-bottom: red solid 1px;
   width: 100%;
 }
@@ -9,7 +9,7 @@
   margin-left: 20px;
   padding: 8px;
   width: 500px;
-  background-color: black;
+  background-color: whitesmoke;
   display: inline-block;
 
 }
@@ -44,7 +44,7 @@ img{
 
 .posts-container{
 
-  background-color: white;
+  background-color: whitesmoke;
   display: inline-block;
   margin-top: 59px;
   width: 728px;

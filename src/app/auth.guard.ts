@@ -8,7 +8,7 @@ export const authGuard: CanActivateFn = (
   const router: Router = inject(Router);
 
   const globalSession = sessionStorage.getItem('globalSession');
-
+  // !
   if (globalSession !== 'true') {
     return router.parseUrl('/login');
   }

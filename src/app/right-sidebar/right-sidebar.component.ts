@@ -4,13 +4,15 @@ import { Subscription } from 'rxjs';
 import { User } from '../models/user-model';
 import {NgIf, NgStyle} from '@angular/common';
 import {Message} from '../models/message-model';
+import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-right-sidebar',
   standalone: true,
   imports: [
     NgStyle,
-    NgIf
+    NgIf,
+    FormsModule
   ],
   templateUrl: './right-sidebar.component.html',
   styleUrls: ['./right-sidebar.component.css'],
@@ -23,10 +25,13 @@ export class RightSidebarComponent implements OnInit, OnDestroy {
   constructor(private httpClient: HttpClient) {}
 
   isChatOpen = false;
+
+
   chatPosition: { top: number; left: number } | null = null;
   ngOnInit(): void {
     const storedUsername = localStorage.getItem('username');
-    console.log("istnieje ?"+storedUsername);
+
+    console.log("abc "+storedUsername);
     this.subscription = this.httpClient
       .get<User[]>('http://localhost:8084/api/friends?username='+storedUsername)
       .subscribe({
@@ -83,4 +88,29 @@ this.friend=friendDetails
     this.isChatOpen = false;
     this.chatPosition = null;
   }
+
+
+
+  messageText=""
+  OnSumbit(){
+
+
+
+
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

@@ -32,11 +32,17 @@
       @for (message of messageDetails; track message.chatId) {
         @if (message.chatId===friend.chatId){
         <div class="message">
-
+          {{message.sender.firstName}} {{message.sender.lastName}}:
           {{ message.content }}
         </div>
         }      }
-
     </div>
+
+    <form class="send-message">
+      <input type="text" [ngModel]="messageText" name="message" placeholder="Send your message..." required>
+      <button type="submit">Send</button>
+    </form>
+
+
   </div>
 }

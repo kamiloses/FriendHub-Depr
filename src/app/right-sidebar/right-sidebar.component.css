@@ -107,3 +107,44 @@
   background-color: #f8f9fa;
   min-height: 100px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.send-message {
+  display: flex;
+  gap: 10px;
+}
+
+.send-message input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.send-message button {
+  padding: 8px 16px;
+  background-color: #9c77cc;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.send-message button:hover {
+  background-color: #9c77ea;
+}
+

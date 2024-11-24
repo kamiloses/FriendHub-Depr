@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { User } from '../models/user-model';
 import {NgIf, NgStyle} from '@angular/common';
+import {Message} from '../models/message-model';
 
 @Component({
   selector: 'app-right-sidebar',
@@ -17,6 +18,7 @@ import {NgIf, NgStyle} from '@angular/common';
 export class RightSidebarComponent implements OnInit, OnDestroy {
   private subscription: Subscription | null = null;
   protected friendDetails!: User[];
+  protected  messageDetails!: Message[];
 
   constructor(private httpClient: HttpClient) {}
 
@@ -36,6 +38,29 @@ export class RightSidebarComponent implements OnInit, OnDestroy {
           console.error('Error while downloading data:', error);
         },
       });
+
+
+
+
+
+
+    this.subscription = this.httpClient
+      .get<Message[]>('http://localhost:8084/api/friends?username='+storedUsername)
+      .subscribe({
+        next: (data) => {
+          console.log(data);
+          this.messageDetails = data;
+        },
+        error: (error) => {
+          console.error('Error while downloading data:', error);
+        },
+      });
+
+
+
+
+
+
   }
 
   ngOnDestroy(): void {

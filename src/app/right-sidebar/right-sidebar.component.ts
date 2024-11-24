@@ -45,7 +45,7 @@ export class RightSidebarComponent implements OnInit, OnDestroy {
 
 
     this.subscription = this.httpClient
-      .get<Message[]>('http://localhost:8084/api/friends?username='+storedUsername)
+      .get<Message[]>('http://localhost:8085/api/message/'+storedUsername)
       .subscribe({
         next: (data) => {
           console.log(data);

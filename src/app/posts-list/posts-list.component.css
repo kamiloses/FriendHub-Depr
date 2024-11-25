@@ -1,13 +1,15 @@
 
 .publish-post{
-  display: inline-block;
+  display: flex;
   background-color: whitesmoke;
-  border-bottom: red solid 1px;
+  border-bottom:  #8e24aa solid 1px;
   width: 100%;
 }
 .publish-post textarea{
+  height: 70%;
   margin-left: 20px;
   padding: 8px;
+  margin-top: 5px;
   width: 500px;
   background-color: whitesmoke;
   display: inline-block;
@@ -15,9 +17,27 @@
 }
 
 .publish-post button{
-  padding: 20px;
+  background-color: #8e24aa;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  margin-left: 13px;
+  height: 35px;
+  margin-top: 13px;
+}
+.publish-post img{
+  margin-top: 2px;
 
 }
+
+
+
+
+
 .icon {
   font-size: 20px;
   color: #1da1f2;

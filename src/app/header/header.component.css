@@ -3,8 +3,8 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  background-color: black;
-  border-bottom: 1px solid #ccc;
+  background-color: whitesmoke;
+  border-bottom: 1px solid #8e24aa;
 
   position: fixed;
   top: 0;
@@ -17,7 +17,7 @@ header {
 
 .header-center span{
   margin-right: 300px;
-  color: white;
+  color: #8e24aa;
 }
 
 

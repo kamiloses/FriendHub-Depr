@@ -3,9 +3,9 @@
 
 
 .post-container{
-  background-color: black;
+  background-color: whitesmoke;
   font-family: Arial, sans-serif;
-  border-bottom: yellow solid 1px;
+  border-bottom:  #8e24aa solid 1px;
 }
 
 .user-data{
@@ -26,17 +26,17 @@ img{
 }
 .name{
   font-weight: bold;
-  color: #ffffff;
+  color: #8e24aa;
 }
 .unique-name,.date{
-  color: #8899a6;
+  color: #8e24aa;
   font-size: 0.9em;
   margin-left: 10px;
 
 }
 
 .post-text {
-  color: white;
+  color: #8e24aa;
   line-height: 1.5;
   margin-top: -10px;
   display: inline-block;

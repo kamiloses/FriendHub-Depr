@@ -3,9 +3,7 @@
   <div class="publish-post">
     <img src="user-1.jpg" alt="image not loaded">
     <textarea placeholder="What's on your mind ?!" [(ngModel)]="newPostContent"></textarea>
-    <i class="fas fa-camera icon"></i>
-    <i class="fas fa-smile"></i>
-    <button (click)="onPublish()" >Opublikuj</button>
+    <button (click)="onPublish()">Publish</button>
   </div>
   }
   @for (post of posts; track post .id) {

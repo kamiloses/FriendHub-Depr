@@ -106,7 +106,20 @@
   padding: 10px;
   background-color: #f8f9fa;
   min-height: 100px;
+
 }
+.message {
+  padding-bottom: 8px;
+
+}
+
+
+.message img{
+  border-radius: 50%;
+  height: 35px;
+
+}
+
 
 
 
@@ -147,4 +160,6 @@
 .send-message button:hover {
   background-color: #9c77ea;
 }
+
+
 

@@ -1,25 +1,22 @@
 <div  class="left-sidebar">
 <ul class="nav-links">
-  <li><img src="X-logo.png" alt="img not loaded"></li>
+  <li><img src="tlo.jpeg" alt="img not loaded"></li>
+
+  <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+  <li><a href="#"><i class="fa fa-search"></i> Search</a></li>
+  <li><a href="#"><i class="fas fa-bell"></i> Notifications</a></li>
+  <li><a href="#"><i class="fas fa-envelope"></i> Messages</a></li>
+  <li><a href="#"><i class="fas fa-user"></i> Profile</a></li>
   <Li><button (click)="logout()">logout</button></Li>
-  <li><a href="#"><i class="fas fa-home"></i>Główna</a></li>
-  <li><a href="#"><i class="fa fa-search"></i>Przeglądaj</a></li>
-  <li><a href="#"><i class="fas fa-bell"></i> Powiadomienia</a></li>
-  <li><a href="#"><i class="fas fa-envelope"></i>Wiadomości</a></li>
-  <li><a [routerLink]="['/user','kamil']"><i class="fas fa-user"></i>Profil</a></li>
-
-  <li><button>Opublikuj wpis</button></li>
-
-
-
-
-
-
-
-
 </ul>
-  <div>
-<span>Kamiloses</span>
+
+
+
+
+
+  <div class="username-section">
+    <img src="https://via.placeholder.com/50" alt="Avatar">
+<span >{{getUsername}}</span>
 
   </div>
 </div>

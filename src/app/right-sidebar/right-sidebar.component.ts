@@ -5,6 +5,7 @@ import { User } from '../models/user-model';
 import {NgIf, NgStyle} from '@angular/common';
 import {Message} from '../models/message-model';
 import {FormsModule} from '@angular/forms';
+import {SendMessageModel} from '../models/sendMessage-model';
 
 @Component({
   selector: 'app-right-sidebar',
@@ -28,12 +29,13 @@ export class RightSidebarComponent implements OnInit, OnDestroy {
 
 
   chatPosition: { top: number; left: number } | null = null;
+    storedUsername:string|null = null;
   ngOnInit(): void {
-    const storedUsername = localStorage.getItem('username');
+    this.storedUsername = localStorage.getItem('username');
 
-    console.log("abc "+storedUsername);
+    console.log("abc "+this.storedUsername);
     this.subscription = this.httpClient
-      .get<User[]>('http://localhost:8084/api/friends?username='+storedUsername)
+      .get<User[]>('http://localhost:8084/api/friends?username='+this.storedUsername)
       .subscribe({
         next: (data) => {
           console.log(data);
@@ -50,7 +52,7 @@ export class RightSidebarComponent implements OnInit, OnDestroy {
 
 
     this.subscription = this.httpClient
-      .get<Message[]>('http://localhost:8085/api/message/'+storedUsername)
+      .get<Message[]>('http://localhost:8085/api/message/'+this.storedUsername)
       .subscribe({
         next: (data) => {
           console.log(data);
@@ -89,16 +91,33 @@ this.friend=friendDetails
     this.chatPosition = null;
   }
 
+   messageBody!:SendMessageModel;
+   messageText=''
+  onSubmit() {
+
+      this.messageText=''
+ console.log("hej");
+ //    this.messageBody.senderUsername=this.storedUsername
+
+    // this.messageBody.content=this.messageText
 
 
-  messageText=""
-  OnSumbit(){
-
-
-
-
+    // this.httpClient.post<any[]>('http://localhost:8085/api/message', )
+    //   .subscribe({
+    //     next: (data) => {
+    //       console.log('Wiadomość została wysłana:', data);
+    //       this.messageDetails = data;
+    //       this.messageText = '';
+    //     },
+    //     error: (error) => {
+    //       console.error('Błąd podczas wysyłania wiadomości:', error);
+    //     },
 
   }
+
+
+
+
 
 
 

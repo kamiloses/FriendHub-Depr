@@ -82,6 +82,7 @@ export class PostsListComponent implements OnInit, OnDestroy {
     }
 
     const newPost = { content: this.newPostContent };
+      this.newPostContent=''
     this.httpClient.post(`http://localhost:8080/api/posts/${this.username}`, newPost).subscribe({
       next: (response) => {
         console.log('Post added successfully:', response);

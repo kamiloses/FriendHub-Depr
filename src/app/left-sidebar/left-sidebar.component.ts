@@ -14,6 +14,7 @@ import {GlobalEnvironmentVariables} from '../models/globalEnvironmentVariables';
 export class LeftSidebarComponent {
      constructor( private globalEnvironmentVariables: GlobalEnvironmentVariables) {}
 
+
   logout(): void {
 
     sessionStorage.clear();
@@ -24,4 +25,16 @@ export class LeftSidebarComponent {
     this.globalEnvironmentVariables.setGlobalSession(false);
 
   }
+
+
+  protected getUsername=sessionStorage.getItem('username')
+
+
+
+
+
+
+
+
+
 }

@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {Registration} from '../../models/registration-model';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -26,8 +27,7 @@ export class RegisterComponent {
   };
 
 
-  constructor(private httpClient: HttpClient) {
-  }
+  constructor(private httpClient: HttpClient, private router: Router) {}
 
   onSubmit() {
     this.loggedUserData.username = this.username;
@@ -40,12 +40,16 @@ export class RegisterComponent {
       error: (error) => {
         console.error('Error creating an account:', error);
         if (error.status === 400 && Array.isArray(error.error)) {
+          console.log(this.usernameError +" password" +this.passwordError+" "+this.firstNameError);
           this.getErrorMessage(error.error);
-       console.log(this.usernameError +" password" +this.passwordError+" "+this.firstNameError);
 
         }
 
       },
+      complete: () => {
+        console.log('HTTP request completed successfully (without errors).');
+        this.router.navigate(['/login']);
+      }
     });
   }
 

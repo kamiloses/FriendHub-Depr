@@ -37,7 +37,7 @@ export class CommentsComponent implements OnInit , OnDestroy {
 
   ngOnInit(): void {
 
-    this.subscription = this.httpClient.get<Comment[]>("http://localhost:7070/api/comments/67357f8a4229ec65dea898dd").subscribe({
+    this.subscription = this.httpClient.get<Comment[]>("http://localhost:8083/api/comments/674be6fe34d59a4ae01dd7c7").subscribe({
       next: (data) => {
         console.log("comment.ts:"+data);
         this.comments = data;

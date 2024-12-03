@@ -46,7 +46,7 @@
 }
 
 .register-container button {
-  margin-top: 50px;
+  margin-top: 20px;
   background-color: #8e24aa;
   color: white;
   padding: 12px 20px;
@@ -56,7 +56,7 @@
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
   width: 300px;
-  margin-left: 100px;
+  margin-left: 112px;
 }
 
 .register-container button:hover {
@@ -76,4 +76,19 @@
     margin-left: auto;
     width: 100%;
   }
+}
+.error-message {
+  color: #d32f2f;
+  font-size: 12px;
+  margin-left: 100px;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+.error-message-password{
+  color: #d32f2f;
+  font-size: 12px;
+  margin-left: 100px;
+  margin-top: -10px;
+
+
 }

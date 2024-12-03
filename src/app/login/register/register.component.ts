@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {Registration} from '../../models/registration-model';
@@ -26,7 +26,8 @@ export class RegisterComponent {
   };
 
 
-  constructor(private httpClient: HttpClient){}
+  constructor(private httpClient: HttpClient) {
+  }
 
   onSubmit() {
     this.loggedUserData.username = this.username;
@@ -36,15 +37,50 @@ export class RegisterComponent {
 
 
     this.httpClient.post("http://localhost:8081/api/user/signup", this.loggedUserData).subscribe({
-      next: (response) => {
-        console.log('Post added successfully:', response);
-      },
       error: (error) => {
-        console.error('Error adding post:', error);
+        console.error('Error creating an account:', error);
+        if (error.status === 400 && Array.isArray(error.error)) {
+          this.getErrorMessage(error.error);
+       console.log(this.usernameError +" password" +this.passwordError+" "+this.firstNameError);
+
+        }
+
       },
-      complete: () => {
-        console.log('Post submission complete.');
-      }
     });
   }
+
+  getErrorMessage(errors: string[]) {
+   this.firstNameError=''
+   this.lastNameError=''
+   this.usernameError=''
+   this.passwordError=''
+
+
+    const error1 = errors.find(e => e.includes("First Name"));
+    if (error1) {
+      this.firstNameError = error1;
+    }
+    const error2 = errors.find(e => e.includes("Last Name"));
+    if (error2) {
+      this.lastNameError = error2;
+    }
+    const error3 = errors.find(e => e.includes("Username"));
+    if (error3) {
+      this.usernameError = error3;
+    }
+    const error4 = errors.find(e => e.includes("Password"));
+    if (error4) {
+      this.passwordError = error4;
+    }
+
+
+  }
+
+
+  firstNameError: string = '';
+  lastNameError: string = '';
+  usernameError: string = '';
+  passwordError: string = '';
+
+
 }

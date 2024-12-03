@@ -1,14 +1,16 @@
 <div class="login-container">
   <h2>Login</h2>
-  <form (ngSubmit)="onSubmit()">
+  <form (ngSubmit)="onSubmit()" class="form">
     <label for="username">Username:</label>
     <input type="text" id="username" [(ngModel)]="username" name="username" required>
 
     <label for="password">Password:</label>
     <input type="password" id="password" [(ngModel)]="password" name="password" required>
-
-    <button type="submit" >Login</button>
+    @if (loginError!==''){
+      <p class="error-message">{{loginError}}</p>
+    }
+    <button type="submit">Login</button>
   </form>
 
-   <a [routerLink]="'/register'">Register</a>
+  <a class="registration-link" [routerLink]="'/register'">Register</a>
 </div>

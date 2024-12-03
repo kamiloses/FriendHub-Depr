@@ -29,6 +29,7 @@ export class LoginComponent implements OnDestroy {
   protected password!: string;
 
   onSubmit() {
+        this.loginError=''
       localStorage.setItem('username', this.username);
 
     const loginData = {username: this.username, password: this.password};
@@ -50,6 +51,7 @@ export class LoginComponent implements OnDestroy {
       },
       error: (error) => {
         console.error('Error while trying to log in', error);
+         this.loginError='your credentials are invalid'
       }
     });
   }
@@ -71,4 +73,6 @@ export class LoginComponent implements OnDestroy {
     const token = this.globalEnvironmentVariables.getGlobalTokenValue();
     return token !== null;
   }
+  loginError=''
+
 }

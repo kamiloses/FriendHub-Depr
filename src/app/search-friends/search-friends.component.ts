@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {Component, OnInit} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute, Router} from '@angular/router';
+import {SearchedPeople} from '../models/searchedPeople-model';
 
 
 @Component({
@@ -13,47 +14,31 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class SearchFriendsComponent implements OnInit {
 
 
-  constructor(private httpClient: HttpClient,private router: Router, private activatedRoute: ActivatedRoute) {}
-  private searchedUsername!:string
-  private currentRoute!:string
+  constructor(private httpClient: HttpClient, private router: Router, private activatedRoute: ActivatedRoute) {
+  }
+
+  private searchedUsername!: string
+  private currentRoute!: string
+  protected searchedPeopleData!:SearchedPeople[]
 
   ngOnInit(): void {
     this.currentRoute = this.router.url;
 
-      const lastSlashIndex = this.currentRoute.lastIndexOf('/');
-      this.searchedUsername = this.currentRoute.substring(lastSlashIndex + 1);
+    const lastSlashIndex = this.currentRoute.lastIndexOf('/');
+    this.searchedUsername = this.currentRoute.substring(lastSlashIndex + 1);
 
-       console.log("Searched Username: " +this.searchedUsername)
+    console.log("Searched Username: " + this.searchedUsername)
+    this.fetchUsers()
   }
 
   fetchUsers() {
 
-    this.httpClient.get<any[]>(`http://localhost:8080/`).subscribe({
+    this.httpClient.get<SearchedPeople[]>(`http://localhost:8084/api/friends/`+this.searchedUsername).subscribe({
       next: (posts) => {
-        console.log('Posts fetched successfully', posts);
+        this.searchedPeopleData = posts;
       },
       error: (error) => {
         console.error('Error fetching posts:', error);
-      }
-    });
-  }
-
-  onPublish() {
-    if (!this.newPostContent.trim()) {
-      alert("Post content cannot be empty");
-      return;
-    }
-
-    const newPost = { content: this.newPostContent };
-
-    this.httpClient.post(`http://localhost:8080/api/posts/${this.username}`, newPost).subscribe({
-      next: () => {
-        console.log('Post added successfully');
-        this.fetchPosts();  // Fetch posts again after publishing a new one.
-        this.newPostContent = '';
-      },
-      error: (error) => {
-        console.error('Error adding post:', error);
       }
     });
   }

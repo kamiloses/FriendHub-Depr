@@ -1,4 +1,4 @@
-export interface SearchedPeopleDto {
+export interface SearchedPeople {
   id: string;
   username: string;
   firstName: string;

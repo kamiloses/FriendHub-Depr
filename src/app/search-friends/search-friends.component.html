@@ -1,1 +1,14 @@
-<p>search-friends works!</p>
+<div class="all-searched-people">
+  @for (user of searchedPeopleData; track user.id) {
+    <div class="one-person">
+      <img src="tlo.jpeg">
+      <p class="name">{{user.firstName}} {{user.lastName}}</p>
+      <p class="username">&#64;{{user.username}}</p>
+      @if (!user.isYourFriend){
+      <button>Add</button>} @else {
+        <button>Remove</button>
+      }
+
+    </div>
+  }
+</div>

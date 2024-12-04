@@ -5,6 +5,7 @@ import {PostsListComponent} from './posts-list/posts-list.component';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './login/register/register.component';
 import {authGuard} from './auth.guard';
+import {SearchFriendsComponent} from './search-friends/search-friends.component';
 
 export const routes: Routes = [
 
@@ -12,6 +13,7 @@ export const routes: Routes = [
   { path: 'user/:username/post/:id', component: PostDetailComponent,canActivate:[authGuard] },
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-
+  {path: 'search/:username',component: SearchFriendsComponent}
+//todo zamień to 11 na username
 ]
 

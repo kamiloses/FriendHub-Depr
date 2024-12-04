@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {RouterLink} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import {GlobalEnvironmentVariables} from '../models/globalEnvironmentVariables';
 
 @Component({
@@ -12,7 +12,7 @@ import {GlobalEnvironmentVariables} from '../models/globalEnvironmentVariables';
   styleUrl: './left-sidebar.component.css'
 })
 export class LeftSidebarComponent {
-     constructor( private globalEnvironmentVariables: GlobalEnvironmentVariables) {}
+     constructor( private globalEnvironmentVariables: GlobalEnvironmentVariables,private router: Router) {}
 
 
   logout(): void {
@@ -23,7 +23,7 @@ export class LeftSidebarComponent {
     this.globalEnvironmentVariables.setGlobalToken(null);
     this.globalEnvironmentVariables.setGlobalUsername(null);
     this.globalEnvironmentVariables.setGlobalSession(false);
-
+    this.router.navigate(['/login'])
   }
 
 

@@ -82,17 +82,26 @@ export class PostsListComponent implements OnInit, OnDestroy {
     }
 
     const newPost = { content: this.newPostContent };
-      this.newPostContent=''
+
     this.httpClient.post(`http://localhost:8080/api/posts/${this.username}`, newPost).subscribe({
-      next: (response) => {
-        console.log('Post added successfully:', response);
+      next: () => {
+        console.log('Post added successfully');
+        this.fetchPosts();
         this.newPostContent = '';
       },
       error: (error) => {
         console.error('Error adding post:', error);
+      }
+    });
+  }
+
+  fetchPosts() {
+    this.httpClient.get<Post[]>('http://localhost:8080/api/posts').subscribe({
+      next: (posts) => {
+        this.posts = posts;
       },
-      complete: () => {
-        console.log('Post submission complete.');
+      error: (error) => {
+        console.error('Error fetching posts:', error);
       }
     });
   }

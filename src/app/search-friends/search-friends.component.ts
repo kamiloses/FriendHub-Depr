@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {ActivatedRoute, Router} from '@angular/router';
 import {SearchedPeople} from '../models/searchedPeople-model';
 import {GlobalEnvironmentVariables} from '../models/globalEnvironmentVariables';
@@ -37,7 +37,12 @@ export class SearchFriendsComponent implements OnInit {
 
   fetchUsers() {
 
-    this.httpClient.get<SearchedPeople[]>(`http://localhost:8084/api/friends/`+this.searchedUsername).subscribe({
+    const headers = new HttpHeaders({
+      'myUsername': this.username ?? '',
+    });
+
+
+    this.httpClient.get<SearchedPeople[]>(`http://localhost:8084/api/friends/`+this.searchedUsername,{headers}).subscribe({
       next: (posts) => {
         this.searchedPeopleData = posts;
       },

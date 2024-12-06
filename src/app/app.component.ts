@@ -20,29 +20,28 @@ export class AppComponent implements OnInit, OnDestroy {
 
 
   currentRoute: string = '';
-
   constructor(private router: Router, private websocketService: WebSocketService) {
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe((event: NavigationEnd) => {
       this.currentRoute = event.urlAfterRedirects;
       console.log("Current endpoint " + this.currentRoute);
-      this.handleRouteChange();
+      const storedUsername = localStorage.getItem('username');
+      this.handleRouteChange(storedUsername);
+
     });
   }
 
-  private handleRouteChange(): void {
+  private handleRouteChange(loggedUser:string|null): void {
 
     if (this.currentRoute !== '/login'&& this.currentRoute !== '/register') {
-      this.websocketService.connect();
+      this.websocketService.connect(loggedUser);
       console.log("WebSocket connected for route: " + this.currentRoute);
     }
   }
 
 
   ngOnInit(): void {
-
-
   }
 
 

@@ -8,22 +8,20 @@ import * as Stomp from 'stompjs';
 export class WebSocketService {
 
   private stompClient: any;
-  private webSocketEndpoint: string = 'http://localhost:8084/ws';
+  private webSocketEndpoint: string = 'http://localhost:8081/ws';
 
-
-
-  connect(): void {
-    console.log("łącze")
-    let ws=SockJS(this.webSocketEndpoint);
+  connect(loggedUser:string |null): void {
+    let ws = new SockJS(this.webSocketEndpoint);
     this.stompClient = Stomp.over(ws);
 
-    this.stompClient.connect({}, (frame: string) => {
-      console.log('Connected to STOMP: ' + frame);
-    }, (error: string) => {
-      console.error('Connection error: ', error);
-    });
+    this.stompClient.connect(
+      { 'username': loggedUser },
+      (frame: string) => {
+        console.log('Connected to STOMP: ' + frame);
+      },
+      (error: string) => {
+        console.error('Connection error: ', error);
+      }
+    );
   }
-
-
-
 }

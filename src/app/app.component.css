@@ -2,7 +2,10 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-
+  width: 772px;
+  background-color: antiquewhite;
+  margin-left: 415px;
+  border-radius: 10PX;
 }
 
 

@@ -1,54 +1,40 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {NavigationEnd, Router, RouterOutlet} from '@angular/router';
 import {HeaderComponent} from './header/header.component';
-import {LeftSidebarComponent} from './left-sidebar/left-sidebar.component';
 import {RightSidebarComponent} from './right-sidebar/right-sidebar.component';
 import {PostsListComponent} from './posts-list/posts-list.component';
 import {filter} from 'rxjs';
 import {NgClass} from '@angular/common';
 import {WebSocketService} from './WebSocketService';
+import {GlobalEnvironmentVariables} from './models/globalEnvironmentVariables';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, LeftSidebarComponent, RightSidebarComponent, PostsListComponent, NgClass],
+  imports: [RouterOutlet, HeaderComponent, RightSidebarComponent, PostsListComponent, NgClass],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent  {
   title = 'FriendHub';
 
 
   currentRoute: string = '';
-  constructor(private router: Router, private websocketService: WebSocketService) {
+  constructor(private router: Router, private websocketService: WebSocketService,private globalEnvironment:GlobalEnvironmentVariables) {
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe((event: NavigationEnd) => {
       this.currentRoute = event.urlAfterRedirects;
       console.log("Current endpoint " + this.currentRoute);
-      const storedUsername = localStorage.getItem('username');
-      this.handleRouteChange(storedUsername);
+      this.globalEnvironment.setCurrentRoute(this.currentRoute);
+
+
 
     });
   }
 
-  private handleRouteChange(loggedUser:string|null): void {
-
-    if (this.currentRoute !== '/login'&& this.currentRoute !== '/register') {
-      this.websocketService.connect(loggedUser);
-      console.log("WebSocket connected for route: " + this.currentRoute);
-    }
-  }
 
 
-  ngOnInit(): void {
-  }
-
-
-
-  ngOnDestroy(): void {
-
-  }
 
 }
 

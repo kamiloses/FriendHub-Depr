@@ -6,6 +6,9 @@ import {NgIf, NgStyle} from '@angular/common';
 import {Message} from '../models/message-model';
 import {FormsModule} from '@angular/forms';
 import {SendMessageModel} from '../models/sendMessage-model';
+import {GlobalEnvironmentVariables} from '../models/globalEnvironmentVariables';
+import {Router} from '@angular/router';
+import {WebSocketService} from '../WebSocketService';
 
 @Component({
   selector: 'app-right-sidebar',
@@ -22,18 +25,41 @@ export class RightSidebarComponent implements OnInit, OnDestroy {
   private subscription: Subscription | null = null;
   protected friendDetails!: User[];
   protected  messageDetails!: Message[];
+  private currentRoute!: string;
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient, private globalEnvironmentVariables: GlobalEnvironmentVariables,private router: Router,private webSocketService:WebSocketService){
+      this.globalEnvironmentVariables.getCurrentRoute$().subscribe(route => {
+        this.currentRoute = route;
+        this.storedUsername = localStorage.getItem('username');
+        this.handleRouteChange(this.storedUsername,this.currentRoute);
+
+      });
+  }
 
   isChatOpen = false;
+
+
+
+  private handleRouteChange(loggedUser:string|null,currentRoute:String): void {
+           console.log("XDDDD "+currentRoute)
+    if (currentRoute !== '/login' && currentRoute !== '/register') {
+      this.webSocketService.connect(loggedUser);
+    }
+  }
+
+
+
+
+
+
+
+
+
 
 
   chatPosition: { top: number; left: number } | null = null;
     storedUsername:string|null = null;
   ngOnInit(): void {
-    this.storedUsername = localStorage.getItem('username');
-
-    console.log("abc "+this.storedUsername);
     this.subscription = this.httpClient
       .get<User[]>('http://localhost:8084/api/friends?username='+this.storedUsername)
       .subscribe({
@@ -68,6 +94,14 @@ export class RightSidebarComponent implements OnInit, OnDestroy {
 
 
 
+
+
+
+
+
+
+
+
   }
 
   ngOnDestroy(): void {
@@ -95,9 +129,9 @@ this.friend=friendDetails
    messageText=''
   onSubmit() {
 
-      this.messageText=''
- console.log("hej");
- //    this.messageBody.senderUsername=this.storedUsername
+    this.messageText = ''
+    console.log("hej");
+    //    this.messageBody.senderUsername=this.storedUsername
 
     // this.messageBody.content=this.messageText
 
@@ -113,7 +147,24 @@ this.friend=friendDetails
     //       console.error('Błąd podczas wysyłania wiadomości:', error);
     //     },
 
+
   }
+
+
+    logout(): void {
+
+      sessionStorage.clear();
+      localStorage.clear();
+
+      this.globalEnvironmentVariables.setGlobalToken(null);
+      this.globalEnvironmentVariables.setGlobalUsername(null);
+      this.globalEnvironmentVariables.setGlobalSession(false);
+      this.router.navigate(['/login'])
+
+
+
+
+   }
 
 
 

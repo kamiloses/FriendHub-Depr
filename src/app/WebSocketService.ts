@@ -8,7 +8,6 @@ import * as Stomp from 'stompjs';
 export class WebSocketService {
 
   private stompClient: any;
-  //private webSocketEndpoint: string = 'http://localhost:8084/ws';
 
   connect(loggedUser:string |null): void {
     let ws = new SockJS('http://localhost:8084/ws');
@@ -18,12 +17,13 @@ export class WebSocketService {
     this.stompClient.connect(
       { 'username': loggedUser },
       (frame: string) => {
-        console.log('Connected to STOMP: ' + frame);
+
         this.stompClient.send('/app/chat.activeFriends', {},loggedUser);
 
 
 
         this.stompClient.subscribe('/topic/public/friendsOnline', (message: any) => {
+
           this.onFriendsOnlineUpdate(message);
         });
 
@@ -36,8 +36,6 @@ export class WebSocketService {
 
 
 
-
-
   private onFriendsOnlineUpdate(message: any): void {
     const friendsOnline: string[] = JSON.parse(message.body);
     console.log('Received friends online data: ', friendsOnline);
@@ -46,7 +44,7 @@ export class WebSocketService {
   }
 
   private updateFriendsOnlineList(friendsOnline: string[]): void {
-    console.log('Friends Online:', friendsOnline);
+  //  console.log('Friends Online:', friendsOnline);
   }
 
 }

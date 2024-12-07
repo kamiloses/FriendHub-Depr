@@ -9,10 +9,22 @@ export class GlobalEnvironmentVariables {
   private globalSessionSubject = new BehaviorSubject<boolean>(false);
   private globalUsernameSubject = new BehaviorSubject<string | null>(null);
   private globalTokenSubject = new BehaviorSubject<string | null>(null);
-
+  private currentRouteSubject = new BehaviorSubject<string>('/login');
   constructor() {
     this.initializeState();
   }
+
+  getCurrentRoute$() {
+    return this.currentRouteSubject.asObservable();
+  }
+
+  setCurrentRoute(route: string) {
+    this.currentRouteSubject.next(route);
+  }
+
+
+
+
 
   private initializeState() {
     const storedSession = sessionStorage.getItem('globalSession') === 'true';

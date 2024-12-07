@@ -9,9 +9,11 @@ header {
   position: fixed;
   top: 0;
   left: 0;
-  width: 72%;
+  width: 730px;
   z-index: 1000;
-  margin-left: 410px;
+  margin-left: 423px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 
 }
 
@@ -52,7 +54,7 @@ header {
   justify-content: center;
 }
 
-.for-you-text {
+.friendhub {
   font-size: 24px;
   font-weight: 600;
   color: #333;
@@ -65,10 +67,11 @@ header {
 
 .search-container {
   position: relative;
+  margin-left: -150px;
 }
 
 .search-container input {
-  width: 250px;
+  width: 200px;
   padding: 10px 40px 10px 10px;
   border: 1px solid #ccc;
   border-radius: 20px;

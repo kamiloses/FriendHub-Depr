@@ -5,6 +5,5 @@ export interface User {
   isOnline: boolean;
   firstName: string;
   lastName: string;
-  bio: string;
   chatId: string;
 }

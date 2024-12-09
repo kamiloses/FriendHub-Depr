@@ -114,8 +114,8 @@ export class RightSidebarComponent implements OnInit, OnDestroy {
 
 this.friend=friendDetails
     this.chatPosition = {
-      top: 420,
-      left:1250 ,
+      top: 440,
+      left:859 ,
     };
     this.isChatOpen = true;
   }

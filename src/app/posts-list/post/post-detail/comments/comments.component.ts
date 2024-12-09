@@ -37,16 +37,14 @@ export class CommentsComponent implements OnInit , OnDestroy {
 
   ngOnInit(): void {
 
-    // this.subscription = this.httpClient.get<Comment[]>("http://localhost:8083/api/comments/674be6fe34d59a4ae01dd7c7").subscribe({
-    //   next: (data) => {
-    //     console.log("comment.ts:"+data);
-    //     this.comments = data;
-    //     console.log("abcs"+this.comments[0].userDetails.firstName);
-    //   },
-    //   error: (error) => {
-    //     console.error('Error while downloading data:', error);
-    //   }
-    // });
+    this.subscription = this.httpClient.get<Comment[]>("http://localhost:8083/api/comments/"+this.currentRoute).subscribe({
+      next: (data) => {
+        this.comments = data;
+      },
+      error: (error) => {
+        console.error('Error while downloading data:', error);
+      }
+    });
 
   }
 

@@ -4,21 +4,27 @@ import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Post} from '../../../models/post-model';
 import {Subscription} from 'rxjs';
+import {FormsModule} from '@angular/forms';
+import {PublishCommentModel} from '../../../models/publishComment-model';
 
 
 @Component({
   selector: 'app-post-detail',
   standalone: true,
   imports: [
-    CommentsComponent
+    CommentsComponent,
+    FormsModule
   ],
   templateUrl: './post-detail.component.html',
   styleUrl: './post-detail.component.css'
 })
-export class PostDetailComponent implements OnInit,OnDestroy {
+export class PostDetailComponent implements OnInit, OnDestroy {
 
 
   post!: Post
+  private username: string | null = null;
+  protected text!: string;
+  protected commentModel: PublishCommentModel = { postId: '', content: '' };
 
 
   private subscription: Subscription | null = null;
@@ -34,13 +40,17 @@ export class PostDetailComponent implements OnInit,OnDestroy {
   modifyRouter() {
 
     this.currentRoute = this.router.url.substring(this.router.url.lastIndexOf("/") + 1);
-    console.log("router :"+this.currentRoute)
+    console.log("router :" + this.currentRoute)
+
   }
 
 
   ngOnInit(): void {
+    console.log("ZZZZZZ");
+    this.username = localStorage.getItem("username");
+    console.log("ZZZZZA" + this.username)
 
-    this.subscription = this.httpClient.get<Post>("http://localhost:8080/api/posts/"+this.currentRoute).subscribe({
+    this.subscription = this.httpClient.get<Post>("http://localhost:8080/api/posts/" + this.currentRoute).subscribe({
       next: (data) => {
         console.log(data);
         this.post = data;
@@ -50,6 +60,7 @@ export class PostDetailComponent implements OnInit,OnDestroy {
       }
     });
 
+
   }
 
   ngOnDestroy(): void {
@@ -58,4 +69,15 @@ export class PostDetailComponent implements OnInit,OnDestroy {
       this.subscription.unsubscribe();
     }
   }
+
+
+  onPublish() {
+
+    this.commentModel.content = this.text
+    this.commentModel.postId=this.currentRoute;
+    this.text = ''
+    this.subscription = this.httpClient.post<void>("http://localhost:8083/api/comments?username=" + this.username, this.commentModel, {}).subscribe();
+
+  }
 }
+

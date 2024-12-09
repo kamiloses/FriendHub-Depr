@@ -5,7 +5,7 @@
         class="friend-container"
         (click)="openChat(friend)">
         <div class="friend-avatar">
-          <img src="https://via.placeholder.com/50" alt="Avatar">
+          <img src="facebook-icon.jpg" alt="Avatar">
           <span class="status-icon"></span>
         </div>
         <div class="friend-info">
@@ -33,7 +33,7 @@
       @for (message of messageDetails; track message.chatId) {
         @if (message.chatId===friend.chatId){
         <div class="message">
-          <img src="https://via.placeholder.com/50" alt="Avatar">
+          <img src="facebook-icon.jpg" alt="Avatar">
           {{message.sender.firstName}} {{message.sender.lastName}}:
           {{ message.content }}
         </div>

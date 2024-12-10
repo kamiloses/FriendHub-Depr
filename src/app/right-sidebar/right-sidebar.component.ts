@@ -77,18 +77,6 @@ export class RightSidebarComponent implements OnInit, OnDestroy {
 
 
 
-    this.subscription = this.httpClient
-      .get<Message[]>('http://localhost:8085/api/message/'+this.storedUsername)
-      .subscribe({
-        next: (data) => {
-          console.log(data);
-          this.messageDetails = data;
-        },
-        error: (error) => {
-          console.error('Error while downloading data:', error);
-        },
-      });
-
 
 
 
@@ -110,9 +98,36 @@ export class RightSidebarComponent implements OnInit, OnDestroy {
     }
   }
    friend!:User;
-  openChat(friendDetails:User): void {
+  openChat(friendDetails:User,chatId:string): void {
 
-this.friend=friendDetails
+
+
+
+
+
+    this.subscription = this.httpClient
+      .get<Message[]>('http://localhost:8085/api/message/'+chatId)
+      .subscribe({
+        next: (data) => {
+          console.log("DANE "+data);
+          this.messageDetails = data;
+        },
+        error: (error) => {
+          console.error('Error while downloading data:', error);
+        },
+      });
+
+
+
+
+
+
+
+
+
+
+
+    this.friend=friendDetails
     this.chatPosition = {
       top: 440,
       left:859 ,
@@ -125,30 +140,23 @@ this.friend=friendDetails
     this.chatPosition = null;
   }
 
-   messageBody!:SendMessageModel;
+  messageBody: SendMessageModel = {chatId: '', senderUsername: '', content: ''};
    messageText=''
-  onSubmit() {
+  onSubmit(chatId:string) {
 
-    this.messageText = ''
     console.log("hej");
-    //    this.messageBody.senderUsername=this.storedUsername
+    this.messageBody.content=this.messageText
+    this.messageBody.chatId=chatId;
+    this.messageBody.senderUsername=this.storedUsername;
 
-    // this.messageBody.content=this.messageText
 
-
-    // this.httpClient.post<any[]>('http://localhost:8085/api/message', )
-    //   .subscribe({
-    //     next: (data) => {
-    //       console.log('Wiadomość została wysłana:', data);
-    //       this.messageDetails = data;
-    //       this.messageText = '';
-    //     },
-    //     error: (error) => {
-    //       console.error('Błąd podczas wysyłania wiadomości:', error);
-    //     },
+       this.messageText='';
+    this.httpClient.post<any[]>('http://localhost:8085/api/message',this.messageBody,{} )
+      .subscribe({})
 
 
   }
+
 
 
     logout(): void {

@@ -56,8 +56,10 @@ export class CommentsComponent implements OnInit , OnDestroy {
   }
 
   sendComment(comment: Comment) {
- console.log("parrentComment"+comment.parentCommentId +"PostId"+comment.postId)
 
+     comment.parentCommentId=comment.id;
+     comment.content='test123'
+    this.subscription = this.httpClient.post<void[]>("http://localhost:8083/api/comments?username=kamiloses",comment).subscribe({});
   }
 
 

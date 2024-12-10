@@ -23,7 +23,7 @@ export class PostDetailComponent implements OnInit, OnDestroy {
 
   post!: Post
   private username: string | null = null;
-  protected text!: string;
+
   protected commentModel: PublishCommentModel = { postId: '', content: '' };
 
 
@@ -70,14 +70,14 @@ export class PostDetailComponent implements OnInit, OnDestroy {
     }
   }
 
-
+  protected text!: string;
   onPublish() {
 
     this.commentModel.content = this.text
     this.commentModel.postId=this.currentRoute;
-    this.text = ''
-    this.subscription = this.httpClient.post<void>("http://localhost:8083/api/comments?username=" + this.username, this.commentModel, {}).subscribe();
 
+    this.subscription = this.httpClient.post<void>("http://localhost:8083/api/comments?username=" + this.username, this.commentModel, {}).subscribe();
+    this.text = ''
   }
 }
 

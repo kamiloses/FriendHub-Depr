@@ -3,7 +3,7 @@
     @for (friend of friendDetails; track friend.id) {
       <div
         class="friend-container"
-        (click)="openChat(friend)">
+        (click)="openChat(friend,friend.chatId)">
         <div class="friend-avatar">
           <img src="facebook-icon.jpg" alt="Avatar">
           <span class="status-icon"></span>
@@ -15,8 +15,12 @@
       </div>
     }
   </div>
-  <button class="logout" (click)="logout()">logout</button>
-</div>
+<!--  <div class="loggedUser">-->
+<!--  <img style="height: 50px;width: 50px;border-radius: 50%" src="facebook-icon.jpg" alt="logged user image">-->
+<!--  {{storedUsername}}-->
+<!--  <button class="logout" (click)="logout()">logout</button>-->
+<!--  </div>-->
+  </div>
 
 @if (isChatOpen) {
   <div
@@ -31,20 +35,22 @@
     <div class="chat-content">
 
       @for (message of messageDetails; track message.chatId) {
-        @if (message.chatId===friend.chatId){
+
+<!--        @if (message.chatId===friend.chatId){-->
         <div class="message">
           <img src="facebook-icon.jpg" alt="Avatar">
           {{message.sender.firstName}} {{message.sender.lastName}}:
           {{ message.content }}
-        </div>
-        }      }
+
+      </div>
+<!--        }-->
+      }
     </div>
 
-    <form (ngSubmit)="onSubmit()" class="send-message">
+    <form (ngSubmit)="onSubmit(friend.chatId)" class="send-message">
       <input type="text" [(ngModel)]="messageText"  name="message" placeholder="Send your message..." required>
       <button type="submit">Send</button>
     </form>
-
 
   </div>
 }

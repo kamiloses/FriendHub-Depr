@@ -10,6 +10,8 @@ import {GlobalEnvironmentVariables} from '../models/globalEnvironmentVariables';
 import {Router} from '@angular/router';
 import {WebSocketService} from '../WebSocketService';
 import {UserActivityDto} from '../models/friendStatus-model';
+import SockJS from 'sockjs-client';
+import * as Stomp from 'stompjs';
 
 @Component({
   selector: 'app-right-sidebar',
@@ -110,22 +112,23 @@ export class RightSidebarComponent implements OnInit, OnDestroy {
    friend!:User;
   openChat(friendDetails:User,chatId:string): void {
 
-
-
-
-
-
     this.subscription = this.httpClient
-      .get<Message[]>('http://localhost:8085/api/message/'+chatId)
+      .get<Message[]>('http://localhost:8085/api/message/' + chatId)
       .subscribe({
         next: (data) => {
-          console.log("DANE "+data);
+          console.log("DANE " + data);
           this.messageDetails = data;
         },
         error: (error) => {
           console.error('Error while downloading data:', error);
         },
       });
+
+
+    this.webSocketService.getStompClient().subscribe(`/topic/chat/${chatId}`, () => {
+      console.log("ZASUBSKRYBOWAŁEM");
+      // Można tu dodać logikę dodawania wiadomości do `messageDetails`
+    });
 
 
 
@@ -148,6 +151,7 @@ export class RightSidebarComponent implements OnInit, OnDestroy {
   closeChat(): void {
     this.isChatOpen = false;
     this.chatPosition = null;
+    this
   }
 
   messageBody: SendMessageModel = {chatId: '', senderUsername: '', content: ''};
@@ -164,7 +168,7 @@ export class RightSidebarComponent implements OnInit, OnDestroy {
     this.httpClient.post<any[]>('http://localhost:8085/api/message',this.messageBody,{} )
       .subscribe({})
 
-
+    this.webSocketService.sendMessage();
   }
 
 

@@ -48,5 +48,20 @@ export class WebSocketService {
   // private updateFriendsOnlineList(friendsOnline: string[]): void {
   // //  console.log('Friends Online:', friendsOnline);
   // }
+  getStompClient() {
+    return this.stompClient;
+  }
+
+  sendMessage(): void {
+
+    // chatId: string, messageContent: string, senderUsername: string
+    // const message = {
+    //   chatId: chatId,
+    //   senderUsername: senderUsername,
+    //   content: messageContent
+    // };
+    this.stompClient.send('/app/chat.sendMessage', {},"test" );
+  }
+// JSON.stringify(message)
 
 }

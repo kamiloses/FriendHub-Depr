@@ -9,6 +9,7 @@ import {SendMessageModel} from '../models/sendMessage-model';
 import {GlobalEnvironmentVariables} from '../models/globalEnvironmentVariables';
 import {Router} from '@angular/router';
 import {WebSocketService} from '../WebSocketService';
+import {UserActivityDto} from '../models/friendStatus-model';
 
 @Component({
   selector: 'app-right-sidebar',
@@ -41,7 +42,7 @@ export class RightSidebarComponent implements OnInit, OnDestroy {
 
 
   private handleRouteChange(loggedUser:string|null,currentRoute:String): void {
-           console.log("XDDDD "+currentRoute)
+
     if (currentRoute !== '/login' && currentRoute !== '/register') {
       this.webSocketService.connect(loggedUser);
     }
@@ -84,13 +85,22 @@ export class RightSidebarComponent implements OnInit, OnDestroy {
 
 
 
-
-
-
-
+    this.subscription = this.webSocketService.friendsOnline$.subscribe((userActivityDto: UserActivityDto) => {
+      if (userActivityDto.isOnline) {
+        console.log("DZIAŁAAAAA" + userActivityDto.username)
+        this.test = userActivityDto.username;
+      }else {
+        this.test=''
+      }
+      console.log('Updated friends online list:', this.friendDetails);
+    })
 
 
   }
+  test!:string
+ // friendStatus!:FriendStatus
+
+
 
   ngOnDestroy(): void {
     if (this.subscription) {

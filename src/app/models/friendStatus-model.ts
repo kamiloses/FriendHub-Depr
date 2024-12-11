@@ -1,4 +1,4 @@
-export interface friendStatus {
+export interface UserActivityDto {
 
   username:string;
   isOnline:boolean;

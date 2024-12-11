@@ -20,7 +20,10 @@
 <!--  {{storedUsername}}-->
 <!--  <button class="logout" (click)="logout()">logout</button>-->
 <!--  </div>-->
+{{test}}
+
   </div>
+
 
 @if (isChatOpen) {
   <div
@@ -45,8 +48,8 @@
       </div>
 <!--        }-->
       }
+      
     </div>
-
     <form (ngSubmit)="onSubmit(friend.chatId)" class="send-message">
       <input type="text" [(ngModel)]="messageText"  name="message" placeholder="Send your message..." required>
       <button type="submit">Send</button>

@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import SockJS from 'sockjs-client';
 import * as Stomp from 'stompjs';
+import {User} from './models/user-model';
+import {Subject} from 'rxjs';
+import {UserActivityDto} from './models/friendStatus-model';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +11,7 @@ import * as Stomp from 'stompjs';
 export class WebSocketService {
 
   private stompClient: any;
+  public friendsOnline$ = new Subject<UserActivityDto>();
 
   connect(loggedUser:string |null): void {
     let ws = new SockJS('http://localhost:8084/ws');
@@ -23,8 +27,8 @@ export class WebSocketService {
 
 
         this.stompClient.subscribe('/topic/public/friendsOnline', (message: any) => {
-
-          this.onFriendsOnlineUpdate(message);
+          const friendStatus: UserActivityDto = JSON.parse(message.body);
+          this.onFriendsOnlineUpdate(friendStatus);
         });
 
       },
@@ -36,15 +40,13 @@ export class WebSocketService {
 
 
 
-  private onFriendsOnlineUpdate(message: any): void {
-    const friendsOnline: string[] = JSON.parse(message.body);
-    console.log('Received friends online data: ', friendsOnline);
+  private onFriendsOnlineUpdate(userActivityDto: UserActivityDto): void {
 
-    this.updateFriendsOnlineList(friendsOnline);
+    this.friendsOnline$.next(userActivityDto);
   }
 
-  private updateFriendsOnlineList(friendsOnline: string[]): void {
-  //  console.log('Friends Online:', friendsOnline);
-  }
+  // private updateFriendsOnlineList(friendsOnline: string[]): void {
+  // //  console.log('Friends Online:', friendsOnline);
+  // }
 
 }

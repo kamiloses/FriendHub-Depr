@@ -46,9 +46,7 @@ export class SearchFriendsComponent implements OnInit {
       next: (posts) => {
         this.searchedPeopleData = posts;
       },
-      error: (error) => {
-        console.error('Error fetching posts:', error);
-      }
+
     });
   }
 
@@ -67,6 +65,7 @@ export class SearchFriendsComponent implements OnInit {
 
     this.httpClient.delete<void>('http://localhost:8084/api/friends', {headers})
       .subscribe();
+    window.location.reload();
 
 
   }
@@ -86,6 +85,8 @@ export class SearchFriendsComponent implements OnInit {
 
     this.httpClient.post<void>('http://localhost:8084/api/friends',null, {headers})
       .subscribe();
+    window.location.reload();
+
 
 
   }

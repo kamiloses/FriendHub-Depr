@@ -78,6 +78,7 @@ export class PostDetailComponent implements OnInit, OnDestroy {
 
     this.subscription = this.httpClient.post<void>("http://localhost:8083/api/comments?username=" + this.username, this.commentModel, {}).subscribe();
     this.text = ''
+    window.location.reload();
   }
 }
 

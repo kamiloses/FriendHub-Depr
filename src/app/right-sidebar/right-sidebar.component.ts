@@ -89,17 +89,18 @@ export class RightSidebarComponent implements OnInit, OnDestroy {
 
     this.subscription = this.webSocketService.friendsOnline$.subscribe((userActivityDto: UserActivityDto) => {
       if (userActivityDto.isOnline) {
-        console.log("DZIAŁAAAAA" + userActivityDto.username)
-        this.test = userActivityDto.username;
+        this.userActivity.username = userActivityDto.username;
+        this.userActivity.isOnline = userActivityDto.isOnline;
       }else {
-        this.test=''
+        this.userActivity = { username: '', isOnline: false };
       }
       console.log('Updated friends online list:', this.friendDetails);
     })
 
 
   }
-  test!:string
+  userActivity = {username: '', isOnline: false
+  };
  // friendStatus!:FriendStatus
 
 

@@ -37,21 +37,18 @@ export class RegisterComponent {
 
 
     this.httpClient.post("http://localhost:8081/api/user/signup", this.loggedUserData).subscribe({
-      error: (error) => {
-        console.error('Error creating an account:', error);
-        if (error.status === 400 && Array.isArray(error.error)) {
-          console.log(this.usernameError +" password" +this.passwordError+" "+this.firstNameError);
-          this.getErrorMessage(error.error);
-
-        }
-
-      },
-      complete: () => {
-        console.log('HTTP request completed successfully (without errors).');
+      next: (response) => {
+        console.log('HTTP request successful:', response);
         this.router.navigate(['/login']);
+      },
+      error: (error) => {
+        if (Array.isArray(error.error)) {
+          console.log("error");
+          this.getErrorMessage(error.error);
+        }
       }
     });
-  }
+    }
 
   getErrorMessage(errors: string[]) {
    this.firstNameError=''

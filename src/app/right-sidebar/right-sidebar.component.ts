@@ -12,6 +12,7 @@ import {WebSocketService} from '../WebSocketService';
 import {UserActivityDto} from '../models/friendStatus-model';
 import SockJS from 'sockjs-client';
 import * as Stomp from 'stompjs';
+import {SendMessageWSModel} from '../models/sendMessageWS-model';
 
 @Component({
   selector: 'app-right-sidebar',
@@ -101,7 +102,7 @@ export class RightSidebarComponent implements OnInit, OnDestroy {
   }
   userActivity = {username: '', isOnline: false
   };
- // friendStatus!:FriendStatus
+
 
 
 
@@ -117,7 +118,6 @@ export class RightSidebarComponent implements OnInit, OnDestroy {
       .get<Message[]>('http://localhost:8085/api/message/' + chatId)
       .subscribe({
         next: (data) => {
-          console.log("DANE " + data);
           this.messageDetails = data;
         },
         error: (error) => {
@@ -126,9 +126,39 @@ export class RightSidebarComponent implements OnInit, OnDestroy {
       });
 
 
-    this.webSocketService.getStompClient().subscribe(`/topic/chat/${chatId}`, () => {
-      console.log("ZASUBSKRYBOWAŁEM");
-      // Można tu dodać logikę dodawania wiadomości do `messageDetails`
+
+
+
+    this.webSocketService.getStompClient().subscribe(`/topic/public/${chatId}`, (message: any) => {
+      this.receiveMessageFromSockets = JSON.parse(message.body);
+
+      const newMessage: Message = {
+        chatId: this.receiveMessageFromSockets.chatId,
+        content: this.receiveMessageFromSockets.message,
+        sender: {
+          id: 'defaultId',
+          username: this.receiveMessageFromSockets.username || 'Unknown',
+          password: 'defaultPassword',
+          isOnline: true,
+          firstName: this.receiveMessageFromSockets.firstName,
+          lastName: this.receiveMessageFromSockets.lastName,
+          chatId: this.receiveMessageFromSockets.chatId,
+        }, recipient: {
+          id: 'defaultRecipientId',
+          username: this.storedUsername || 'Unknown',
+          password: 'recipientPassword',
+          isOnline: false,
+          firstName: 'RecipientFirstName',
+          lastName: 'RecipientLastName',
+          chatId: this.receiveMessageFromSockets.chatId,
+        },
+        timestamp: new Date(),
+        isRead: false,
+      };
+
+      this.messageDetails = [...this.messageDetails, newMessage];
+
+
     });
 
 
@@ -159,7 +189,6 @@ export class RightSidebarComponent implements OnInit, OnDestroy {
    messageText=''
   onSubmit(chatId:string) {
 
-    console.log("hej");
     this.messageBody.content=this.messageText
     this.messageBody.chatId=chatId;
     this.messageBody.senderUsername=this.storedUsername;
@@ -169,7 +198,15 @@ export class RightSidebarComponent implements OnInit, OnDestroy {
     this.httpClient.post<any[]>('http://localhost:8085/api/message',this.messageBody,{} )
       .subscribe({})
 
-    this.webSocketService.sendMessage();
+
+
+
+
+
+
+
+    this.webSocketService.sendMessage("abcdef",this.storedUsername,chatId);
+
   }
 
 
@@ -189,7 +226,8 @@ export class RightSidebarComponent implements OnInit, OnDestroy {
 
    }
 
-
+  receiveMessageFromSockets:SendMessageWSModel = {chatId: '', message: '', username: null, firstName: '', lastName: ''
+  };
 
 
 

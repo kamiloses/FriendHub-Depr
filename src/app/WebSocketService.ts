@@ -4,6 +4,7 @@ import * as Stomp from 'stompjs';
 import {User} from './models/user-model';
 import {Subject} from 'rxjs';
 import {UserActivityDto} from './models/friendStatus-model';
+import {SendMessageWSModel} from './models/sendMessageWS-model';
 
 @Injectable({
   providedIn: 'root'
@@ -52,16 +53,14 @@ export class WebSocketService {
     return this.stompClient;
   }
 
-  sendMessage(): void {
+  sendMessageWs: SendMessageWSModel = {chatId:"",message: "", username: null, firstName: "", lastName: ""};
+  sendMessage(message:string,username:string|null,chatId:string): void {
+   this.sendMessageWs.message=message;
+   this.sendMessageWs.username=username;
+   this.sendMessageWs.chatId=chatId;
 
-    // chatId: string, messageContent: string, senderUsername: string
-    // const message = {
-    //   chatId: chatId,
-    //   senderUsername: senderUsername,
-    //   content: messageContent
-    // };
-    this.stompClient.send('/app/chat.sendMessage', {},"test" );
+    this.stompClient.send('/app/chat.sendMessage', {},JSON.stringify(this.sendMessageWs) );
   }
-// JSON.stringify(message)
+
 
 }

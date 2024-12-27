@@ -205,7 +205,7 @@ export class RightSidebarComponent implements OnInit, OnDestroy {
 
 
 
-    this.webSocketService.sendMessage("abcdef",this.storedUsername,chatId);
+    this.webSocketService.sendMessage(this.messageBody.content,this.storedUsername,chatId);
 
   }
 

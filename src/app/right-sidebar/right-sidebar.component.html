@@ -11,14 +11,16 @@
         <div class="friend-info">
           <span class="friend-name">{{ friend.firstName }} {{ friend.lastName }}</span>
           @if (friend.username==userActivity.username && userActivity.isOnline){
-          <span class="friend-status">ONLINE</span>}
-          @if (friend.username==userActivity.username && !userActivity.isOnline){
-            <span class="friend-status">OFFLINE</span>}
+          <span class="friend-status">online</span>}
+          @else if (friend.username==userActivity.username && !userActivity.isOnline){
+            <span class="friend-status">offline</span>}
 
           @else {
-
-            <span class="friend-status">{{friend.isOnline}}</span>}
-
+            @if (friend.isOnline){
+            <span class="friend-status">online</span>}
+          @else{
+            <span class="friend-status">offline</span>}
+          }
 
 
 

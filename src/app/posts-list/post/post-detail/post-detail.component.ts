@@ -46,9 +46,7 @@ export class PostDetailComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
-    console.log("ZZZZZZ");
     this.username = localStorage.getItem("username");
-    console.log("ZZZZZA" + this.username)
 
     this.subscription = this.httpClient.get<Post>("http://localhost:8080/api/posts/" + this.currentRoute).subscribe({
       next: (data) => {

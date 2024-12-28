@@ -14,6 +14,6 @@ export const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'search/:username',component: SearchFriendsComponent}
-//todo zamień to 11 na username
+
 ]
 

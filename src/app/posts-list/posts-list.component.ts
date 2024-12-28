@@ -39,7 +39,6 @@ export class PostsListComponent implements OnInit, OnDestroy {
     if (storedUsername) {
       this.globalEnvironment.setGlobalUsername(storedUsername);
       this.username = storedUsername;
-      console.log('Username loaded from storage:', this.username);
     }
 
 

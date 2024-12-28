@@ -23,9 +23,8 @@ export class SearchFriendsComponent implements OnInit {
   protected searchedPeopleData!:SearchedPeople[]
   protected username: string |null = null
   ngOnInit(): void {
-    console.error("FDFSD")
     this.username=sessionStorage.getItem('username');
-    console.log("mój username "+this.username)
+    console.log("username "+this.username)
     this.currentRoute = this.router.url;
 
     const lastSlashIndex = this.currentRoute.lastIndexOf('/');

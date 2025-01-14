@@ -1,8 +1,9 @@
 .left-sidebar{
   width: 390px;
   height: 100vh;
-  border-right: 1px solid #aaaaaa;
+  border-right: 1px solid black;
   background-color: whitesmoke;
+
 
 
   position: fixed;

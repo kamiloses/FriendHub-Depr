@@ -1,9 +1,13 @@
+.posts-container{
+margin-left: -86px;
+}
+
 
 .publish-post{
   display: flex;
   background-color: whitesmoke;
   border-bottom:  #8e24aa solid 1px;
-  width: 100%;
+  width: 118%;
 }
 .publish-post textarea{
   height: 70%;

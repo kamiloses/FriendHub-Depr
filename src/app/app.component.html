@@ -6,7 +6,7 @@
 
   <router-outlet ></router-outlet>
   <app-right-sidebar [ngClass]="{'hide': currentRoute === '/login' || currentRoute === '/register'}"></app-right-sidebar>
-
+  <app-left-sidebar [ngClass]="{'hide': currentRoute === '/login' || currentRoute === '/register'}"></app-left-sidebar>
 
 </div>
 

@@ -1,14 +1,21 @@
 .right-sidebar {
   background-color: whitesmoke;
-  width: 270px;
+  width: 490px;
   height: 100vh;
   margin-top: -1px;
   border-left: 1px solid #ddd;
   margin-right: 300px;
+  position: absolute;
+  left: 980px;
+
+
 }
 
 .friendsList {
   margin-top: 60px;
+  border: black solid 1px;
+  width: 322px;
+  border-left-color: white;
 }
 
 .friend-container {
@@ -19,6 +26,7 @@
   background-color: #ffffff;
   transition: background-color 0.3s ease-in-out;
   border-radius: 8px;
+  width: 300px;
 }
 
 .friend-container:hover {

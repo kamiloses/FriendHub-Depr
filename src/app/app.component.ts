@@ -7,11 +7,12 @@ import {filter} from 'rxjs';
 import {NgClass} from '@angular/common';
 import {WebSocketService} from './WebSocketService';
 import {GlobalEnvironmentVariables} from './models/globalEnvironmentVariables';
+import {LeftSidebarComponent} from './left-sidebar/left-sidebar.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, RightSidebarComponent, PostsListComponent, NgClass],
+  imports: [RouterOutlet, HeaderComponent, RightSidebarComponent, PostsListComponent, NgClass, LeftSidebarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

@@ -1,0 +1,89 @@
+.left-sidebar{
+  width: 390px;
+  height: 100vh;
+  border-right: 1px solid #aaaaaa;
+  background-color: whitesmoke;
+
+
+  position: fixed;
+  left: 0;
+
+}
+ul{
+  font-size: 25px;
+}
+
+a{
+  color: #8e24aa;
+  text-decoration: none;
+}
+span{
+
+  color: #8e24aa;
+}
+
+img{
+  height: 50px;
+  width: 50px;
+
+}
+li{
+  margin-top: 40px;
+  text-decoration: none;
+  list-style: none;
+  margin-left: 15px;
+}
+
+ul li img{
+  border-radius: 50%;
+
+}
+
+
+
+
+
+
+
+button {
+  background-color: #8e24aa;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #8e24aa;
+}
+
+button:active {
+  background-color: #8e24aa;
+}
+
+button:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.username-section{
+  margin-top: 180px;
+  display: flex;
+
+}
+.username-section span{
+  margin-left: 10px;
+  font-size: 25px;
+  margin-top: 16px;
+
+
+}
+.username-section img{
+  margin-left: 40px;
+
+  border-radius: 50%;
+
+}

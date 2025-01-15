@@ -8,7 +8,7 @@ import {NgClass} from '@angular/common';
 import {WebSocketService} from './WebSocketService';
 import {GlobalEnvironmentVariables} from './models/globalEnvironmentVariables';
 import {LeftSidebarComponent} from './left-sidebar/left-sidebar.component';
-import {UserProfileComponent} from './user-profile/user-profile.component';
+import {UserProfileComponent} from './left-sidebar/user-profile/user-profile.component';
 
 @Component({
   selector: 'app-root',

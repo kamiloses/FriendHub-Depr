@@ -8,11 +8,12 @@ import {NgClass} from '@angular/common';
 import {WebSocketService} from './WebSocketService';
 import {GlobalEnvironmentVariables} from './models/globalEnvironmentVariables';
 import {LeftSidebarComponent} from './left-sidebar/left-sidebar.component';
+import {UserProfileComponent} from './user-profile/user-profile.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, RightSidebarComponent, PostsListComponent, NgClass, LeftSidebarComponent],
+  imports: [RouterOutlet, HeaderComponent, RightSidebarComponent, PostsListComponent, NgClass, LeftSidebarComponent, UserProfileComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

@@ -52,3 +52,12 @@ i{
   cursor: pointer;
 
 }
+
+
+.retweeted {
+  color: #8e24aa;
+  background-color: rgba(142, 36, 170, 0.1);
+  padding: 5px;
+  border-radius: 50%;
+  transition: transform 0.3s ease, color 0.3s ease;
+}

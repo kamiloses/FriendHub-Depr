@@ -7,9 +7,13 @@
     <p class="date"> 20.04.2024</p>
   </div>
   <div class="post-text">
-    {{postDetails.content}}
     <div class="interactions">
       <i class="fa fa-comment">0</i>
+      @if (postDetails.retweetCount) {
+        <i class="fa fa-retweet retweeted"></i> <span>{{postDetails.retweetCount}}</span>
+      } @else{
+      <i class="fa fa-retweet"></i> <span>{{postDetails.retweetCount}}</span>
+      }
       <i class="fa fa-heart">{{postDetails.likeCount}}</i>
 
 

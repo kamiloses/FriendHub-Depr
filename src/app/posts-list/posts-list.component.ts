@@ -35,6 +35,7 @@ export class PostsListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
+
     const storedUsername = localStorage.getItem('username');
     if (storedUsername) {
       this.globalEnvironment.setGlobalUsername(storedUsername);
@@ -54,11 +55,11 @@ export class PostsListComponent implements OnInit, OnDestroy {
 
 
     this.updateHeader();
-    this.subscription = this.httpClient.get<Post[]>("http://localhost:8080/api/posts").subscribe({
+    this.subscription = this.httpClient.get<Post[]>("http://localhost:8080/api/posts?username="+storedUsername).subscribe({
       next: (data) => {
         console.log('Posts loaded:', data);
         this.posts = data;
-      },
+        },
       error: (error) => {
         console.error('Error while downloading posts:', error);
       }

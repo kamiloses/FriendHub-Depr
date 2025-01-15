@@ -16,7 +16,5 @@ export class PostComponent  {
   @Input({required:true}) postDetails!:Post
 
 
-
-
-
+  protected readonly JSON = JSON;
 }

@@ -35,7 +35,6 @@ export class PostsListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-
     const storedUsername = localStorage.getItem('username');
     if (storedUsername) {
       this.globalEnvironment.setGlobalUsername(storedUsername);
@@ -59,6 +58,8 @@ export class PostsListComponent implements OnInit, OnDestroy {
       next: (data) => {
         console.log('Posts loaded:', data);
         this.posts = data;
+        console.log("aaa"+this.posts)
+
         },
       error: (error) => {
         console.error('Error while downloading posts:', error);
@@ -88,6 +89,7 @@ export class PostsListComponent implements OnInit, OnDestroy {
         console.log('Post added successfully');
         this.fetchPosts();
         this.newPostContent = '';
+        window.location.reload();
       },
       error: (error) => {
         console.error('Error adding post:', error);

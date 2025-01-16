@@ -8,6 +8,7 @@
   </div>
   <div class="post-text">
     {{postDetails.content}}
+
     <div class="interactions">
       <i class="fa fa-comment">0</i>
       @if (postDetails.retweetedByMe) {
@@ -15,8 +16,12 @@
       } @else {
         <i class="fa fa-retweet" (click)="retweet($event)"></i> <span>{{postDetails.retweetCount}}</span>
       }
-      <i class="fa fa-heart"></i>
 
+      @if (postDetails.retweetedByMe) {
+        <i class="fa fa-heart liked" ></i> <span>{{postDetails.likeCount}}</span>
+      } @else {
+        <i class="fa fa-heart"></i> <span>{{postDetails.likeCount}}</span>
+      }
 
 
     </div>

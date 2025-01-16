@@ -29,8 +29,6 @@ export class PostComponent {
   event.stopPropagation();
 
 
-      console.log("RETWEETUJE"+JSON.stringify(this.postDetails)+ "USERNAME"+this.loggedUserUsername)
-
       this.httpClient.post<void>(`http://localhost:8080/api/retweet?postId=${this.postDetails.id}&username=${this.loggedUserUsername}`, null)
         .subscribe(() => {
           window.location.reload();
@@ -39,7 +37,6 @@ export class PostComponent {
   }
   undoRetweet(event:MouseEvent):void{
     event.stopPropagation();
-    console.log("COFAM"+JSON.stringify(this.postDetails) + "USERNAME"+this.loggedUserUsername)
 
     this.httpClient.delete<void>(`http://localhost:8080/api/retweet?postId=${this.postDetails.id}&username=${this.loggedUserUsername}`)
       .subscribe(() => {

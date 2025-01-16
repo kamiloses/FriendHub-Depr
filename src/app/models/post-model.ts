@@ -9,6 +9,7 @@ export interface Post {
   retweetCount: number;
   commentsCount:number;
   retweetedByMe: boolean;
+  likedByMe:boolean
   isDeleted: boolean;
 
 

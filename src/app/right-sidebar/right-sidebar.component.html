@@ -32,7 +32,23 @@
         (click)="openChat(friend,friend.chatId)">
         <div class="friend-avatar">
           <img src="facebook-icon.jpg" alt="Avatar">
-          <span class="status-icon"></span>
+
+
+          @if (friend.username==userActivity.username && userActivity.isOnline){
+            <span class="status-icon"></span>}
+          @else if (friend.username==userActivity.username && !userActivity.isOnline){
+            <span class="status-icon-offline"></span>}
+
+          @else {
+            @if (friend.isOnline){
+              <span class="status-icon"></span>}
+            @else{
+              <span class="status-icon-offline"></span>}
+          }
+
+
+
+
         </div>
         <div class="friend-info">
           <span class="friend-name">{{ friend.firstName }} {{ friend.lastName }}</span>

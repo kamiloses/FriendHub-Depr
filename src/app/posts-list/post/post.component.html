@@ -17,10 +17,10 @@
         <i class="fa fa-retweet" (click)="retweet($event)"></i> <span>{{postDetails.retweetCount}}</span>
       }
 
-      @if (postDetails.retweetedByMe) {
-        <i class="fa fa-heart liked" ></i> <span>{{postDetails.likeCount}}</span>
+      @if (postDetails.likedByMe) {
+        <i class="fa fa-heart liked" (click)="unlikeThePost($event)" ></i> <span>{{postDetails.likeCount}}</span>
       } @else {
-        <i class="fa fa-heart"></i> <span>{{postDetails.likeCount}}</span>
+        <i class="fa fa-heart"  (click)="likeThePost($event)"></i> <span>{{postDetails.likeCount}}</span>
       }
 
 

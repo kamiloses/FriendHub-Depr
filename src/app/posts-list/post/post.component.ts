@@ -49,4 +49,33 @@ export class PostComponent {
 
   protected readonly event = event;
 
+
+
+
+
+
+
+
+  likeThePost(event:MouseEvent ): void {
+    event.stopPropagation();
+
+
+    this.httpClient.post<void>(`http://localhost:8087/api/like?postId=${this.postDetails.id}&username=${this.loggedUserUsername}`, null)
+      .subscribe(() => {
+        window.location.reload();
+      });
+
+  }
+  unlikeThePost(event:MouseEvent):void{
+    event.stopPropagation();
+
+    this.httpClient.delete<void>(`http://localhost:8087/api/like?postId=${this.postDetails.id}&username=${this.loggedUserUsername}`)
+      .subscribe(() => {
+        window.location.reload();
+      });
+
+  }
+
+
+
 }

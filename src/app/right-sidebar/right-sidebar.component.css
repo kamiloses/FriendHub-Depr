@@ -154,8 +154,15 @@
   background-color: #28a745;
 }
 
-.status-icon.offline {
-  background-color: #dc3545;
+.status-icon-offline {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  width: 10px;
+  height: 10px;
+  background-color:  #A9A9A9;
+  border: 1px solid #fff;
+  border-radius: 50%;
 }
 
 .friend-chat-window {

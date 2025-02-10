@@ -2,8 +2,6 @@ import {Component, Input} from '@angular/core';
 import {Post} from '../../models/post-model';
 import {RouterLink} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
-import {User} from '../../models/user-model';
-
 @Component({
   selector: 'app-post',
   standalone: true,
@@ -26,21 +24,24 @@ export class PostComponent {
 
 
   retweet(event:MouseEvent ): void {
-  event.stopPropagation();
+    event.stopPropagation();
+    this.postDetails.retweetCount += 1;
+    this.postDetails.retweetedByMe = true;
 
+    this.httpClient.post<void>(`http://localhost:8080/api/retweet?postId=${this.postDetails.id}&username=${this.loggedUserUsername}`, null)
+      .subscribe(() => {
 
-      this.httpClient.post<void>(`http://localhost:8080/api/retweet?postId=${this.postDetails.id}&username=${this.loggedUserUsername}`, null)
-        .subscribe(() => {
-          window.location.reload();
-        });
+      });
 
   }
   undoRetweet(event:MouseEvent):void{
     event.stopPropagation();
 
+    this.postDetails.retweetCount -= 1;
+    this.postDetails.retweetedByMe = false;
     this.httpClient.delete<void>(`http://localhost:8080/api/retweet?postId=${this.postDetails.id}&username=${this.loggedUserUsername}`)
       .subscribe(() => {
-        window.location.reload();
+
       });
 
   }
@@ -58,20 +59,20 @@ export class PostComponent {
 
   likeThePost(event:MouseEvent ): void {
     event.stopPropagation();
-
+    this.postDetails.likeCount += 1;
+    this.postDetails.likedByMe = true;
 
     this.httpClient.post<void>(`http://localhost:8087/api/like?postId=${this.postDetails.id}&username=${this.loggedUserUsername}`, null)
       .subscribe(() => {
-        window.location.reload();
       });
 
   }
   unlikeThePost(event:MouseEvent):void{
     event.stopPropagation();
-
+    this.postDetails.likeCount -= 1;
+    this.postDetails.likedByMe = false;
     this.httpClient.delete<void>(`http://localhost:8087/api/like?postId=${this.postDetails.id}&username=${this.loggedUserUsername}`)
       .subscribe(() => {
-        window.location.reload();
       });
 
   }

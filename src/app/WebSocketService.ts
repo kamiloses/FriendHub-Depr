@@ -55,9 +55,9 @@ export class WebSocketService {
 
   sendMessageWs: SendMessageWSModel = {chatId:"",message: "", username: null, firstName: "", lastName: ""};
   sendMessage(message:string,username:string|null,chatId:string): void {
-   this.sendMessageWs.message=message;
-   this.sendMessageWs.username=username;
-   this.sendMessageWs.chatId=chatId;
+    this.sendMessageWs.message=message;
+    this.sendMessageWs.username=username;
+    this.sendMessageWs.chatId=chatId;
 
     this.stompClient.send('/app/chat.sendMessage', {},JSON.stringify(this.sendMessageWs) );
   }

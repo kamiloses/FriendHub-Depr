@@ -60,7 +60,7 @@ export class PostsListComponent implements OnInit, OnDestroy {
         this.posts = data;
         console.log("aaa"+this.posts)
 
-        },
+      },
       error: (error) => {
         console.error('Error while downloading posts:', error);
       }

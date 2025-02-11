@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {ActivatedRoute, Router} from '@angular/router';
 import {SearchedPeople} from '../models/searchedPeople-model';
 import {GlobalEnvironmentVariables} from '../models/globalEnvironmentVariables';
+import {WebSocketService} from '../WebSocketService';
 
 
 @Component({
@@ -15,7 +16,9 @@ import {GlobalEnvironmentVariables} from '../models/globalEnvironmentVariables';
 export class SearchFriendsComponent implements OnInit {
 
 
-  constructor(private globalEnvironmentVariables: GlobalEnvironmentVariables,private httpClient: HttpClient, private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(private globalEnvironmentVariables: GlobalEnvironmentVariables,private httpClient: HttpClient, private router: Router, private activatedRoute: ActivatedRoute
+  ,private websocketService:WebSocketService
+  ) {
   }
 
   private searchedUsername!: string
@@ -65,7 +68,7 @@ export class SearchFriendsComponent implements OnInit {
     this.httpClient.delete<void>('http://localhost:8084/api/friends', {headers})
       .subscribe();
     window.location.reload();
-
+     this.websocketService.sendFriendInvitationNotification()
 
   }
 
@@ -86,6 +89,7 @@ export class SearchFriendsComponent implements OnInit {
       .subscribe();
     window.location.reload();
 
+    this.websocketService.sendFriendInvitationNotification()
 
 
   }

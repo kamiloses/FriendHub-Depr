@@ -62,5 +62,10 @@ export class WebSocketService {
     this.stompClient.send('/app/chat.sendMessage', {},JSON.stringify(this.sendMessageWs) );
   }
 
+sendFriendInvitationNotification() {
+
+  this.stompClient.send('/app/chat.friendInvitation', {} );
+
+}
 
 }

@@ -7,6 +7,7 @@ import {RegisterComponent} from './login/register/register.component';
 import {authGuard} from './auth.guard';
 import {SearchFriendsComponent} from './search-friends/search-friends.component';
 import {UserProfileComponent} from './left-sidebar/user-profile/user-profile.component';
+import {NotificationsComponent} from './notifications/notifications.component';
 
 export const routes: Routes = [
 
@@ -15,7 +16,8 @@ export const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'search/:username',component: SearchFriendsComponent},
-  {path: 'profile/kamiloses',component:UserProfileComponent}
+  {path: 'profile/kamiloses',component:UserProfileComponent},
+  {path: 'notifications', component: NotificationsComponent},
 
 ]
 

@@ -1,19 +1,16 @@
-<div  class="left-sidebar">
+<div class="left-sidebar">
   <ul class="nav-links">
     <li><img src="favicon.ico" alt="img not loaded"></li>
 
-    <li><a href=""><i class="fas fa-home"></i> Home</a></li>
-    <li><a href="/profile/kamiloses"><i class="fas fa-user"></i> Profile</a></li>
-    <Li><button (click)="logout()">logout</button></Li>
+    <li><a routerLink="/"><i class="fas fa-home"></i>Home</a></li>
+    <li><a routerLink="/profile/kamiloses"><i class="fas fa-user"></i> Profile</a></li>
+    <li><button (click)="logout()">logout</button></li>
   </ul>
-
-
-
 
 
   <div class="username-section">
     <img src="facebook-icon.jpg" alt="Avatar">
-    <span >{{getUsername}}</span>
+    <span>{{ myUsername }}</span>
 
   </div>
 </div>

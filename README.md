@@ -1,3 +1,11 @@
+
+
+
+⚠️ This is my old Angular project, where the CSS and TypeScript files were not written the way I initially intended. Currently, I am writing new frontend code for the FriendHub backend.⚠️
+
+
+
+
 <br><br><h2>Registration-Process</h2>
 The first step is the registration process. In the backend, I implemented validation to check if the inputs are valid.
 ![image](https://github.com/user-attachments/assets/1bd10fa2-d058-4970-b405-3e852e7a99a5)

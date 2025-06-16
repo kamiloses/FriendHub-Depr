@@ -1,7 +1,7 @@
 
 
 
-⚠️ This is my old Angular project, where the CSS and TypeScript files were not written the way I initially intended. Currently, I am writing new frontend code for the FriendHub backend.⚠️
+⚠️ This is my old Angular project, where the CSS and TypeScript files were not originally written as I intended. Currently, I am developing new frontend code for the FriendHub backend. Here is the link to my latest version. https://github.com/kamiloses/FriendHub-Frontend⚠️
 
 
 
